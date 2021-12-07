@@ -11,6 +11,7 @@ import com.google.gson.stream.JsonReader;
 
 public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
     private DWGraph gr;
+    private int biggest;
 
     public GraphAlgo(DirectedWeightedGraph g) {
         this.init(g);
@@ -18,7 +19,16 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
 
     @Override
     public void init(DirectedWeightedGraph g) {
-        this.gr = new DWGraph(g);
+        this.gr = (DWGraph) g;
+        int max=Integer.MIN_VALUE;
+        for(int i: this.gr.getNodes().keySet())
+        {
+            if(max<this.gr.getNodes().get(i).getKey())
+            {
+                max=this.gr.getNodes().get(i).getKey();
+            }
+        }
+        this.biggest=max+1;
     }
 
     @Override
@@ -37,7 +47,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         if (this.gr.nodeSize() == 0) {
             return true;
         }
-        boolean v[] = new boolean[this.gr.nodeSize()];
+        boolean v[] = new boolean[this.biggest];
         List<Integer> q = new LinkedList<>();
         q.add(this.gr.getNodes().get(0).getKey());
         while (!q.isEmpty()) {
@@ -77,31 +87,32 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         }
         return true;
     }
-    public HashMap<Integer,HashMap<Integer, EdgeData>> revers() {
-            HashMap<Integer,HashMap<Integer, EdgeData>> h=new HashMap<>();
-            Collection<Integer> keys=this.gr.getEdges().keySet();
-            for(int i : keys)
+    private HashMap<Integer,HashMap<Integer, EdgeData>> revers() {
+        HashMap<Integer,HashMap<Integer, EdgeData>> h=new HashMap<>();
+        Collection<Integer> keys=this.gr.getEdges().keySet();
+        for(int i : keys)
+        {
+            h.put(i,new HashMap<>());
+        }
+        for(int i : keys)
+        {
+            Collection<Integer> keys2=this.gr.getEdges().get(i).keySet();
+            for(int j : keys2)
             {
-                h.put(i,new HashMap<>());
+                int src=this.gr.getEdges().get(i).get(j).getDest();
+                int dest=this.gr.getEdges().get(i).get(j).getSrc();
+                double w=this.gr.getEdges().get(i).get(j).getWeight();
+                EdgeData e=new Edge(src,dest,w);
+                h.get(src).put(dest,e);
             }
-            for(int i : keys)
-            {
-                Collection<Integer> keys2=this.gr.getEdges().get(i).keySet();
-                for(int j : keys2)
-                {
-                    int src=this.gr.getEdges().get(i).get(j).getDest();
-                    int dest=this.gr.getEdges().get(i).get(j).getSrc();
-                    double w=this.gr.getEdges().get(i).get(j).getWeight();
-                    EdgeData e=new Edge(src,dest,w);
-                    h.get(src).put(dest,e);
-                }
-            }
-            return h;
+        }
+        return h;
 
         }
+
     @Override
     public double shortestPathDist(int src, int dest) {
-        double d[]=new double[this.gr.nodeSize()];
+        double d[]=new double[this.biggest];
         Collection<Integer> keys=this.gr.getNodes().keySet();
         for(int i : keys)
         {
@@ -137,9 +148,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         }
         return d[dest];
     }
-
-    private boolean white()
-    {
+    private boolean white() {
         Iterator<NodeData> iter=this.gr.nodeIter();
         while (iter.hasNext())
         {
@@ -150,9 +159,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         }
         return false;
     }
-
-    private int minVal(double d[])
-    {
+    private int minVal(double d[]) {
         double min=Integer.MAX_VALUE;
         int temp=-1;
         Iterator<NodeData> iter=this.gr.nodeIter();
@@ -184,9 +191,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         }
         return temp;
     }
-
-    private double min(double x,double y)
-    {
+    private double min(double x,double y) {
         if(x<y)
             return x;
         return y;
@@ -234,10 +239,9 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         }
         return l;
     }
-    private int[] path_arr(int src)
-    {
-        double d[]=new double[this.gr.nodeSize()];
-        int f[]=new int[this.gr.nodeSize()];
+    private int[] path_arr(int src) {
+        double d[]=new double[this.biggest];
+        int f[]=new int[this.biggest];
         Collection<Integer> keys=this.gr.getNodes().keySet();
         for(int i : keys)
         {
@@ -276,7 +280,6 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         return f;
     }
 
-
     @Override
     public NodeData center() {
         if(!this.isConnected())
@@ -304,15 +307,14 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         }
         return this.gr.getNodes().get(k);
     }
-    private double maxVal(int x,double max)
-    {
-        double d[]=new double[this.gr.nodeSize()];
+    private double maxVal(int x,double max) {
+        double d[]=new double[this.biggest];
         Collection<Integer> keys=this.gr.getNodes().keySet();
         for(int i : keys)
         {
             d[i]=this.shortestPathDist(x,i);
         }
-        for(int j=0;j<d.length;j++)
+        for(int j : keys)
         {
             if(d[j]>max)
             {
@@ -381,8 +383,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
             }
             return ans;
     }
-    public boolean next(List<NodeData> cities)
-    {
+    private boolean next(List<NodeData> cities) {
         NodeData node=cities.get(0);
         cities.remove(node);
         for(NodeData n: cities)
@@ -396,7 +397,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         cities.add(0,node);
         return false;
     }
-    public int minStart(List<NodeData> cities) {
+    private int minStart(List<NodeData> cities) {
         int temp=-1;
         double w;
         double min=Double.MAX_VALUE;
@@ -416,30 +417,6 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         }
         return temp;
 
-    }
-
-        private double[][] creatArr(List<NodeData> cities)
-    {
-        double arr[][]=new double[cities.size()][cities.size()];
-        for(int i=0;i<cities.size();i++)
-        {
-            for (int j=0;j<cities.size();j++)
-            {
-                if(this.gr.getEdges().get(cities.get(i).getKey()).containsKey(cities.get(j).getKey()))
-                {
-                    arr[i][j]=this.gr.getEdges().get(i).get(j).getWeight();
-                }
-                else if(i!=j)
-                {
-                    arr[i][j]=Integer.MAX_VALUE;
-                }
-                else if (i == j)
-                {
-                    arr[i][j]=0;
-                }
-            }
-        }
-        return arr;
     }
 
     @Override
