@@ -293,6 +293,15 @@ class GraphAlgoTest {
 
     @Test
     void save() {
+        DWGraph g01=new DWGraph(graph_1());
+        GraphAlgo g1 = new GraphAlgo(g01);
+        DWGraph g02=new DWGraph(graph_2());
+        GraphAlgo g2 = new GraphAlgo(g02);
+        DWGraph g03=new DWGraph(graph_3());
+        GraphAlgo g3 = new GraphAlgo(g03);
+        assertEquals(true,g1.save("g1.json"));
+        assertEquals(true,g2.save("g2.json"));
+        assertEquals(true,g3.save("g3.json"));
     }
 
     @Test

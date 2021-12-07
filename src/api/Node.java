@@ -30,7 +30,7 @@ public class Node implements NodeData{
 
     @Override
     public void setLocation(GeoLocation p) {
-        this.location = new Location(p) ;
+        this.location = new Location(p);
     }
 
     @Override

@@ -36,4 +36,13 @@ public class Location implements GeoLocation {
         double d  = Math.pow(g.x()-this.x,2)+Math.pow(g.y()-this.y,2) +Math.pow(g.z()-this.z,2);
         return Math.sqrt(d);
     }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "x=" + x +
+                ", y=" + y +
+                ", z=" + z +
+                '}';
+    }
 }

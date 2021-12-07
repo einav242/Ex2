@@ -52,5 +52,4 @@ public class Edge implements EdgeData{
         this.tag = t ;
     }
 
-
 }
