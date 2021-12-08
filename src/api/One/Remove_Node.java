@@ -15,7 +15,7 @@ public class Remove_Node implements ActionListener {
 
     JTextField userIDField = new JTextField();
     JPasswordField userPasswordField = new JPasswordField();
-
+    JLabel messageLabel_t = new JLabel();
     JLabel userIDLabel = new JLabel("Node: ");
     JLabel messageLabel = new JLabel();
     Scanner sc=new Scanner(System.in);
@@ -29,6 +29,8 @@ public class Remove_Node implements ActionListener {
 
         userIDLabel.setBounds(50,100,75,25);
 
+        messageLabel_t.setBounds(125,250,250,35);
+        messageLabel_t.setFont(new Font(null, Font.ITALIC,25));
 
         messageLabel.setBounds(125,250,250,35);
         messageLabel.setFont(new Font(null, Font.ITALIC,25));
@@ -44,6 +46,7 @@ public class Remove_Node implements ActionListener {
         frame.add(userIDField);
         frame.add(userPasswordField);
         frame.add(loginButton);
+        frame.add(messageLabel_t);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420,420);
         frame.setLayout(null);
@@ -57,8 +60,13 @@ public class Remove_Node implements ActionListener {
             if(this.graph.getNodes().containsKey(this.key))
             {
                 this.graph.removeNode(this.key);
-                messageLabel.setForeground(Color.red);
-                messageLabel.setText("Wrong password");
+                messageLabel_t.setForeground(Color.red);
+                messageLabel_t.setText("the node remove");
+            }
+            else
+            {
+                messageLabel_t.setForeground(Color.red);
+                messageLabel_t.setText("the node is not in the graph");
             }
 
         }

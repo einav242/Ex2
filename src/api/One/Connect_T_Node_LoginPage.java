@@ -70,7 +70,7 @@ public class Connect_T_Node_LoginPage implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == BackButton){
             frame.dispose();
-            EditG well = new EditG();
+            //EditG well = new EditG();
         }
         else{
             messageLabel.setForeground(Color.red);
