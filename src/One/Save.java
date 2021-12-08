@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import api.*;
 public class Save implements ActionListener {
+    DWGraph graph;
     JFrame frame = new JFrame();
     JButton loginButton = new JButton("enter");
     //  JButton loginButton = new JButton("Back");
@@ -17,11 +18,11 @@ public class Save implements ActionListener {
     JLabel messageLabel = new JLabel();
 
 
-    Save()
+    Save(DirectedWeightedGraph graph)
     {
 
         //  loginInfo = loginInfoOriginal;
-
+        this.graph=new DWGraph(graph);
         userIDLabel.setBounds(50,100,75,25);
 
 
@@ -49,7 +50,9 @@ public class Save implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == loginButton)
         {
-
+            GraphAlgo algo=new GraphAlgo(this.graph);
+            String file=Field.getText();
+            algo.save(file);
         }
     }
 }

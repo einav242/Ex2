@@ -7,9 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-
+import api.*;
 public class LoginPage implements ActionListener {
-    DirectedWeightedGraph graph;
+    DWGraph graph;
     JFrame frame = new JFrame();
     JButton loginButton = new JButton("Load Graph");
     JButton saveButton = new JButton("Save Graph");
@@ -23,7 +23,7 @@ public class LoginPage implements ActionListener {
     HashMap<Integer,Integer> loginInfo = new HashMap<Integer,Integer>();
 
      LoginPage(HashMap <Integer,Integer> loginInfoOriginal, DirectedWeightedGraph graph) {
-         this.graph=graph;
+         this.graph=new DWGraph(graph);
          loginInfo = loginInfoOriginal;
          JLabel lblAdminLoginForm = new JLabel("Choose your choice:");
          lblAdminLoginForm.setBounds(99,50,300,25);
@@ -65,7 +65,7 @@ public class LoginPage implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == saveButton){
             frame.dispose();
-            Save s = new Save();
+            Save s = new Save(this.graph);
         }
         if(e.getSource() == algoButton){
             frame.dispose();
