@@ -1,12 +1,9 @@
 package api;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 import com.google.gson.*;
-import com.google.gson.stream.JsonReader;
 
 
 public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
@@ -112,7 +109,59 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
 
     @Override
     public double shortestPathDist(int src, int dest) {
+        double d[]=path_arr(src,"dist");
+        if(d[dest] == Integer.MAX_VALUE || d[dest]==0)
+        {
+            return  -1;
+        }
+        return d[dest];
+    }
+    @Override
+    public List<NodeData> shortestPath(int src, int dest) {
+        List<NodeData>l=new LinkedList<>();
+        if(this.shortestPathDist(src,dest) ==-1)
+        {
+            return l;
+        }
+        double arr[]=path_arr(src,"path");
+        int arr2[]=new int[arr.length];
+        for (int i=0;i<arr2.length;i++)
+        {
+            arr2[i]=-1;
+        }
+        arr2[arr2.length-1]=dest;
+        int j=dest;
+        for(int i=arr2.length-2;i>=0;i--)
+        {
+            if(j == src)
+            {
+                arr2[i]= (int) arr[j];
+                break;
+            }
+            arr2[i]= (int) arr[j];
+            j= (int) arr[j];
+        }
+        int i=0;
+        while(arr2[i]!=src)
+        {
+            i++;
+        }
+        while(arr2[i]==src && i<arr2.length)
+        {
+            i++;
+        }
+        l.add(this.gr.getNode(src));
+        while (i<arr2.length)
+        {
+            l.add(this.gr.getNode(arr2[i]));
+            i++;
+        }
+        return l;
+    }
+
+    private double[] path_arr(int src, String key) {
         double d[]=new double[this.biggest];
+        double f[]= new double[this.biggest];
         Collection<Integer> keys=this.gr.getNodes().keySet();
         for(int i : keys)
         {
@@ -125,6 +174,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
                 d[i]=Integer.MAX_VALUE;
             }
             this.gr.getNodes().get(i).setTag(0);
+            f[i]=-1;
         }
         d[src]=0;
         int i=src;
@@ -135,18 +185,23 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
             for(int j : keys2)
             {
                 int k=this.gr.getNodes().get(j).getKey();
+                double temp=d[k];
                 if(d[i]!=Integer.MAX_VALUE)
                 {
                     d[k] = min(d[k], d[i] + gr.getEdges().get(i).get(j).getWeight());
+                    if(d[k]!=temp || i==src)
+                    {
+                        f[k]=i;
+                    }
                 }
             }
             i=minVal(d);
         }
-        if(d[dest] == Integer.MAX_VALUE || d[dest]==0)
+        if(key == "dist")
         {
-            return  -1;
+            return d;
         }
-        return d[dest];
+        return f;
     }
     private boolean white() {
         Iterator<NodeData> iter=this.gr.nodeIter();
@@ -195,89 +250,6 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         if(x<y)
             return x;
         return y;
-    }
-
-    @Override
-    public List<NodeData> shortestPath(int src, int dest) {
-        List<NodeData>l=new LinkedList<>();
-        if(this.shortestPathDist(src,dest) ==-1)
-        {
-            return l;
-        }
-        int arr[]=path_arr(src);
-        int arr2[]=new int[arr.length];
-        for (int i=0;i<arr2.length;i++)
-        {
-            arr2[i]=-1;
-        }
-        arr2[arr2.length-1]=dest;
-        int j=dest;
-        for(int i=arr2.length-2;i>=0;i--)
-        {
-            if(j == src)
-            {
-                arr2[i]=arr[j];
-                break;
-            }
-            arr2[i]=arr[j];
-            j=arr[j];
-        }
-        int i=0;
-        while(arr2[i]!=src)
-        {
-            i++;
-        }
-        while(arr2[i]==src && i<arr2.length)
-        {
-            i++;
-        }
-        l.add(this.gr.getNode(src));
-        while (i<arr2.length)
-        {
-            l.add(this.gr.getNode(arr2[i]));
-            i++;
-        }
-        return l;
-    }
-    private int[] path_arr(int src) {
-        double d[]=new double[this.biggest];
-        int f[]=new int[this.biggest];
-        Collection<Integer> keys=this.gr.getNodes().keySet();
-        for(int i : keys)
-        {
-            if(this.gr.getEdges().get(src).containsKey(i))
-            {
-                d[i]=this.gr.getEdges().get(src).get(i).getWeight();
-            }
-            else
-            {
-                d[i]=Integer.MAX_VALUE;
-            }
-            this.gr.getNodes().get(i).setTag(0);
-            f[i]=-1;
-        }
-        d[src]=0;
-        int i=src;
-        while (white())
-        {
-            this.gr.getNodes().get(i).setTag(2);
-            Collection<Integer> keys2=this.gr.getEdges().get(i).keySet();
-            for(int j : keys2)
-            {
-                int k=this.gr.getNodes().get(j).getKey();
-                double temp=d[k];
-                if(d[i]!=Integer.MAX_VALUE)
-                {
-                    d[k] = min(d[k], d[i] + gr.getEdges().get(i).get(j).getWeight());
-                    if(d[k]!=temp || i==src)
-                    {
-                        f[k]=i;
-                    }
-                }
-            }
-            i=minVal(d);
-        }
-        return f;
     }
 
     @Override
@@ -330,59 +302,55 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
 
     @Override
     public List<NodeData> tsp(List<NodeData> cities) {
-        if (cities.size() == 0)
+        if (cities.size() == 0){
             return null;
-        for(int i=0; i<cities.size(); i++){
-            for (int j=0; j<cities.size(); j++)
-            {
-                if (shortestPathDist(cities.get(i).getKey(),cities.get(j).getKey()) == -1 && i!=j)
-                {
+        }
+        List<NodeData> ans = new ArrayList<>();
+        List<NodeData> temp = new ArrayList<>();
+        for (int i = 0; i < cities.size(); i++) {
+            for (int j = 0; j < cities.size(); j++) {
+                if (shortestPathDist(cities.get(i).getKey(), cities.get(j).getKey()) == -1 && i != j) {
                     return null;
                 }
             }
         }
-            List<NodeData> ans = new ArrayList<>();
-            List<NodeData> temp = new ArrayList<>();
-            double temp_Dist = Double.MAX_VALUE;
-            int d = 0;
-            int start = minStart(cities);
-            int i = 0;
-            while (cities.size()!=0)
-            {
-                double min = Double.MAX_VALUE;
-                for (int j = 0; j < cities.size(); j++)
-                {
-                    if (ans.size()!=0)
-                        start = ans.get(ans.size() - 1).getKey();
-                    else {
-                        if (i > 0)
-                            start = cities.get(i).getKey();
-                    }
-                    temp_Dist = shortestPathDist(start, cities.get(j).getKey());
-                    if (temp_Dist < min && start!=cities.get(j).getKey()) {
-                        min = temp_Dist;
-                        temp = shortestPath(start, cities.get(j).getKey());
-                        d = cities.get(j).getKey();
+        int  i = 0 , d = 0;
+        double temp_Dist = Double.MAX_VALUE;
+        int start = minStart(cities);
+        while (cities.size() != 0) {
+            double min = Double.MAX_VALUE;
+            for (int j = 0; j < cities.size(); j++) {
+                if (ans.size() != 0) {
+                    start = ans.get(ans.size() - 1).getKey();
+                }
+                else {
+                    if (0  <  i ) {
+                        start = cities.get(i).getKey();
                     }
                 }
-                i++;
-                for (int j =0 ; j < temp.size(); j++)
-                {
-                    if(ans.size()!=0 && ans.get(ans.size()-1).getKey() == temp.get(j).getKey() )
-                    {
-                        continue;
-                    }
-                    ans.add(temp.get(j));
+                temp_Dist = shortestPathDist(start, cities.get(j).getKey());
+                if (temp_Dist < min && start != cities.get(j).getKey()) {
+                    min = temp_Dist;
+                    temp = shortestPath(start, cities.get(j).getKey());
+                    d = cities.get(j).getKey();
                 }
-                cities.remove(this.gr.getNode(d));
             }
-            if(next(ans) == true)
-            {
-                NodeData n=ans.get(0);
-                ans.remove(n);
+            i++;
+            for (int j = 0; j < temp.size(); j++) {
+                if (ans.size() != 0 && ans.get(ans.size() - 1).getKey() == temp.get(j).getKey()) {
+                    continue;
+                }
+                ans.add(temp.get(j));
             }
-            return ans;
+            cities.remove(this.gr.getNode(d));
+        }
+        if (next(ans) == true) {
+            NodeData n = ans.get(0);
+            ans.remove(n);
+        }
+        return ans;
     }
+
     private boolean next(List<NodeData> cities) {
         NodeData node=cities.get(0);
         cities.remove(node);
@@ -419,55 +387,73 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
 
     }
 
+
     @Override
     public boolean save(String file) {
         JsonObject jsonOb = new JsonObject();
-
-        JsonArray jsonAr1 = new JsonArray();
-        Iterator<EdgeData>iter=this.gr.edgeIter();
-        while (iter.hasNext()) {
-            EdgeData ed = iter.next();
-            JsonObject cnt1 = new JsonObject();
-            cnt1.addProperty("src ", ed.getSrc());
-            cnt1.addProperty("w ", ed.getWeight());
-            cnt1.addProperty("dest ", ed.getDest());
-            jsonAr1.add(cnt1);
-        }
-        jsonOb.add("Edges", jsonAr1);
-
-        JsonArray jsonAr2 = new JsonArray();
-        Iterator<NodeData>iter2=this.gr.nodeIter();
-        while (iter2.hasNext()) {
-            NodeData nd = iter2.next();
-            JsonObject cnt2 = new JsonObject();
-            cnt2.addProperty("pos ", nd.getLocation().x() + "," + nd.getLocation().y() + "," + nd.getLocation().z());
-            cnt2.addProperty("id", nd.getKey());
-            jsonAr2.add(cnt2);
-        }
-        jsonOb.add("Nodes", jsonAr2);
+        jsonOb.add("Edges", this.save_edge());
+        jsonOb.add("Nodes", this.save_node());
 
         //make json
         Gson gson = new GsonBuilder().setPrettyPrinting().create(); // pretty print
         String json = gson.toJson(jsonOb); // the object that we want to change to json
 
         //Write JSON to file
-        try {
-            PrintWriter myWriter = new PrintWriter(new File(file));
+        try
+        {
+            FileWriter myWriter = new FileWriter(new File(file));
             myWriter.write(json);
             myWriter.close();
         }
-        catch (FileNotFoundException e)
-        {
+        catch (IOException e) {
             System.out.println("error");
             e.printStackTrace();
             return false;
         }
         return true;
     }
-
-    @Override
-    public boolean load(String file){
-        return true;
+    public JsonArray save_edge() {
+        JsonArray jsonAr1 = new JsonArray();
+        Iterator<EdgeData> iter = this.gr.edgeIter();
+        while (iter.hasNext()) {
+            EdgeData e = iter.next();
+            JsonObject b1 = new JsonObject();
+            b1.addProperty("src", e.getSrc());
+            b1.addProperty("w", e.getWeight());
+            b1.addProperty("dest", e.getDest());
+            jsonAr1.add(b1);
+        }
+        return jsonAr1;
+    }
+    public JsonArray save_node() {
+        JsonArray jsonAr2 = new JsonArray();
+        Iterator<NodeData> iter2 = this.gr.nodeIter();
+        while (iter2.hasNext()) {
+            NodeData nd = iter2.next();
+            JsonObject b2 = new JsonObject();
+            b2.addProperty("pos", nd.getLocation().x() + "," + nd.getLocation().y() + "," + nd.getLocation().z());
+            b2.addProperty("id", nd.getKey());
+            jsonAr2.add(b2);
+        }
+        return jsonAr2;
     }
 
+    @Override
+    public boolean load(String file) {
+        try {
+            GsonBuilder builder = new GsonBuilder();
+            builder.registerTypeAdapter(DWGraph.class, new DWG_deserializer());
+            Gson gson = builder.create();
+
+            FileReader reader = new FileReader(file);
+            DirectedWeightedGraph graph = gson.fromJson(reader, DWGraph.class);
+            init(graph);
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 }
+
+

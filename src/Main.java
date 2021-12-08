@@ -74,7 +74,6 @@ public class Main {
 
         //DWGraph g2=new DWGraph(g);
         DirectedWeightedGraphAlgorithms alg = new GraphAlgo(g);
-        alg.save("bar.json");
         DirectedWeightedGraph g3=alg.copy();
         System.out.println(alg.isConnected());
         //System.out.println(alg.shortestPathDist(0,6));
@@ -99,6 +98,13 @@ public class Main {
        {
            System.out.println(l2.get(i)+"->");
        }
+
+      boolean t= alg2.load("G1.json");
+        alg2.save("bar.json");
+        alg2.load("bar.json");
+        System.out.println(t);
+        System.out.println(alg2.isConnected());
+
     }
 
     }

@@ -306,5 +306,15 @@ class GraphAlgoTest {
 
     @Test
     void load() {
+        DWGraph g01=new DWGraph();
+        GraphAlgo g1 = new GraphAlgo(g01);
+        DWGraph g02=new DWGraph();
+        GraphAlgo g2 = new GraphAlgo(g02);
+        DWGraph g03=new DWGraph();
+        GraphAlgo g3 = new GraphAlgo(g03);
+        assertEquals(true,g1.load("G1.json"));
+        assertEquals(true,g2.load("G2.json"));
+        assertEquals(true,g3.load("G3.json"));
+
     }
 }
