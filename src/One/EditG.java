@@ -1,5 +1,7 @@
-package api.One;
-import api.*;
+package One;
+
+import api.DirectedWeightedGraph;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

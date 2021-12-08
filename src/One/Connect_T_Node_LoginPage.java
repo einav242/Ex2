@@ -1,4 +1,4 @@
-package api.One;
+package One;
 
 import javax.swing.*;
 import java.awt.*;

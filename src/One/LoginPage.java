@@ -1,5 +1,7 @@
-package api.One;
-import api.*;
+package One;
+
+import api.DirectedWeightedGraph;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -67,6 +69,7 @@ public class LoginPage implements ActionListener {
         }
         if(e.getSource() == algoButton){
             frame.dispose();
+            Use_Algo_LoginPage log = new Use_Algo_LoginPage();
         }
         if (e.getSource() == editButton) {
             frame.dispose();

@@ -1,4 +1,4 @@
-package api.One;
+package One;
 
 public class RemoveEdge_Main {
 

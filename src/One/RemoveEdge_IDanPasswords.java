@@ -1,14 +1,14 @@
-package api.One;
+package One;
 
 import java.util.HashMap;
 
-public class IDanPasswords {
+public class RemoveEdge_IDanPasswords {
 
     HashMap<Integer,Integer> logininfo = new HashMap<Integer,Integer>();
 
+    RemoveEdge_IDanPasswords(){
+        logininfo.put(1,2);
 
-    IDanPasswords(){
-        logininfo.put(1,0);
     }
 
      protected HashMap getLoginInfo(){

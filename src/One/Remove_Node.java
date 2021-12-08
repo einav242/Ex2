@@ -1,10 +1,12 @@
-package api.One;
-import api.*;
+package One;
+
+import api.DWGraph;
+import api.DirectedWeightedGraph;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Remove_Node implements ActionListener {
