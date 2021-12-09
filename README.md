@@ -4,7 +4,7 @@
 
 
 
-## :heavy_check_mark: The First part:
+## :heavy_check_mark: Main Classes and Methods:
 
 Location class implemets GeoLocation
 
