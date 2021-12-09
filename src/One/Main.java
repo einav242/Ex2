@@ -7,6 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
         DirectedWeightedGraph graph=new DWGraph();
-        WelcomePage welcomePage=new WelcomePage(graph);
+        myGraph idPasswords = new myGraph();
+
+        WelcomePage welcomePage=new WelcomePage(idPasswords.getLoginInfo(),graph);
     }
 }

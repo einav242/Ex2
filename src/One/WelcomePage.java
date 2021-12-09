@@ -4,18 +4,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+
 import api.*;
 public class WelcomePage implements ActionListener {
     DWGraph graph;
     JFrame frame = new JFrame();
-    JLabel welcomeLabel = new JLabel("Hi bar");
+    JLabel welcomeLabel = new JLabel("welcome!");
     JButton loginButton = new JButton("start");
+    HashMap<Integer,Integer> loginInfo = new HashMap<Integer,Integer>();
 
 
-    WelcomePage(DirectedWeightedGraph graph){
+    WelcomePage(HashMap<Integer,Integer> loginInfoOriginal, DirectedWeightedGraph graph){
         this.graph=new DWGraph(graph);
-        welcomeLabel.setBounds(0,0,200,35);
-        welcomeLabel.setFont(new Font(null,Font.PLAIN,25));
+        loginInfo = loginInfoOriginal;
+        welcomeLabel.setBounds(150,100,500,35);
+        welcomeLabel.setFont(new Font(null,Font.PLAIN,45));
+        welcomeLabel.setForeground(Color.orange);
 
 
         loginButton.setBounds(225,200,100,25);
@@ -34,8 +39,8 @@ public class WelcomePage implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() ==loginButton)
         {
-            IDanPasswords idPasswords = new IDanPasswords();
-            LoginPage loginPage = new LoginPage(idPasswords.getLoginInfo(),graph);
+            frame.dispose();
+            LoginPage loginPage = new LoginPage(graph);
         }
     }
 }

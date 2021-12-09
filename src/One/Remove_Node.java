@@ -65,15 +65,15 @@ public class Remove_Node implements ActionListener {
             {
                 this.graph.removeNode(key);
                 if(!this.graph.getNodes().containsKey(key)) {
-                    s = new result_screen(this.graph, "the node removed", 1);
+                    s = new result_screen(this.graph, "the node removed", 1,"",null);
                 }
                 else {
-                    s = new result_screen(this.graph,"try again!", 0);
+                    s = new result_screen(this.graph,"try again!", 0,"",null);
                 }
             }
             else
             {
-                s = new result_screen(this.graph,"try again!", 0);
+                s = new result_screen(this.graph,"try again!", 0,"",null);
             }
         }
         if (e.getSource() == backButton) {

@@ -16,6 +16,8 @@ public class EditG implements ActionListener {
         JButton connectButton = new JButton("Connect Two Node");
         JButton removeN_Button = new JButton("Remove Node");
         JButton removeE_Button = new JButton("Remove Edge");
+        JButton getN_Button = new JButton("get Node");
+        JButton getE_Button = new JButton("get Edge");
         JButton backButton = new JButton("Back");
 
         JTextField userIDField = new JTextField();
@@ -51,6 +53,14 @@ public class EditG implements ActionListener {
             removeE_Button.setFocusable(false);
             removeE_Button.addActionListener(this);
 
+            getE_Button.setBounds(100,300,200,25);
+            getE_Button.setFocusable(false);
+            getE_Button.addActionListener(this);
+
+            getN_Button.setBounds(100,350,200,25);
+            getN_Button.setFocusable(false);
+            getN_Button.addActionListener(this);
+
             frame.add(lblAdminLoginForm);
             frame.add(removeE_Button);
             frame.add(connectButton);
@@ -60,6 +70,8 @@ public class EditG implements ActionListener {
             frame.add(userPasswordField);
             frame.add(addButton);
             frame.add(backButton);
+            frame.add(getE_Button);
+            frame.add(getN_Button);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(420,420);
             frame.setLayout(null);
@@ -88,38 +100,9 @@ public class EditG implements ActionListener {
             if(e.getSource() == backButton)
             {
                 frame.dispose();
-                IDanPasswords idPasswords = new IDanPasswords();
-                LoginPage l=new LoginPage(idPasswords.getLoginInfo(),graph);
+                myGraph idPasswords = new myGraph();
+                LoginPage l=new LoginPage(graph);
             }
-
-         /*
-        if (e.getSource() == resetButton) {
-            userIDField.setText("");
-            userPasswordField.setText("");
-        }
-
-        if (e.getSource() == loginButton) {
-            String userID = userIDField.getText();
-            String password = String.valueOf(userPasswordField.getPassword());
-
-            if (loginInfo.containsKey(userID)){
-                if(loginInfo.get(userID).equals(password)) {
-                    messageLabel.setForeground(Color.green);
-                    messageLabel.setText("Login successful");
-                    frame.dispose();
-                    WelcomePage wel = new WelcomePage(userID);
-                }
-                else{
-                    messageLabel.setForeground(Color.red);
-                    messageLabel.setText("Wrong password");
-                }
-            }
-            else {
-                messageLabel.setForeground(Color.red);
-                messageLabel.setText("username not found");
-            }
-
-        }*/
         }
 
     }

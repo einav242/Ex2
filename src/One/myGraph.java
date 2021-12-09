@@ -2,12 +2,12 @@ package One;
 
 import java.util.HashMap;
 
-public class IDanPasswords {
+public class myGraph {
 
     HashMap<Integer,Integer> logininfo = new HashMap<Integer,Integer>();
 
 
-    IDanPasswords(){
+    myGraph(){
         logininfo.put(1,0);
     }
 

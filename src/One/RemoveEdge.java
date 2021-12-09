@@ -65,15 +65,15 @@ public class RemoveEdge implements ActionListener {
             {
                 this.graph.removeEdge(src,dest);
                 if(!this.graph.getEdges().get(src).containsKey(dest)) {
-                    s = new result_screen(this.graph, "the edges removed", 1);
+                    s = new result_screen(this.graph, "the edges removed", 1,"",null);
                 }
                 else {
-                    s = new result_screen(this.graph,"try again!", 0);
+                    s = new result_screen(this.graph,"try again!", 0,"",null);
                 }
             }
             else
             {
-                s = new result_screen(this.graph,"try again!", 0);
+                s = new result_screen(this.graph,"try again!", 0,"",null);
             }
         }
 

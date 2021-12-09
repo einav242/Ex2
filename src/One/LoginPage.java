@@ -11,6 +11,7 @@ import api.*;
 public class LoginPage implements ActionListener {
     DWGraph graph;
     JFrame frame = new JFrame();
+    JButton showGraphButton = new JButton("Show Graph");
     JButton loginButton = new JButton("Load Graph");
     JButton saveButton = new JButton("Save Graph");
     JButton editButton = new JButton("Edit Graph");
@@ -20,11 +21,10 @@ public class LoginPage implements ActionListener {
     JPasswordField userPasswordField = new JPasswordField();
     JLabel messageLabel = new JLabel();
 
-    HashMap<Integer,Integer> loginInfo = new HashMap<Integer,Integer>();
 
-     LoginPage(HashMap <Integer,Integer> loginInfoOriginal, DirectedWeightedGraph graph) {
+
+     LoginPage(DirectedWeightedGraph graph) {
          this.graph=new DWGraph(graph);
-         loginInfo = loginInfoOriginal;
          JLabel lblAdminLoginForm = new JLabel("Choose your choice:");
          lblAdminLoginForm.setBounds(99,50,300,25);
          lblAdminLoginForm.setForeground(Color.red);
@@ -47,6 +47,10 @@ public class LoginPage implements ActionListener {
          algoButton.setFocusable(false);
          algoButton.addActionListener(this);
 
+         showGraphButton.setBounds(100,300,200,25);
+         showGraphButton.setFocusable(false);
+         showGraphButton.addActionListener(this);
+
          frame.add(lblAdminLoginForm);
          frame.add(algoButton);
          frame.add(saveButton);
@@ -55,6 +59,7 @@ public class LoginPage implements ActionListener {
          frame.add(userIDField);
          frame.add(userPasswordField);
          frame.add(loginButton);
+         frame.add(showGraphButton);
          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          frame.setSize(420,420);
          frame.setLayout(null);
@@ -79,34 +84,15 @@ public class LoginPage implements ActionListener {
             frame.dispose();
             EditG well = new EditG(this.graph);
         }
+        if(e.getSource()==showGraphButton)
+        {
+            frame.dispose();
+            Show s=new Show(this.graph,"",null);
+        }
         else{
             messageLabel.setForeground(Color.red);
             messageLabel.setText("Not Good");
         }
-        /*
-        if (e.getSource() == loginButton) {
-            String userID = userIDField.getText();
-            String password = String.valueOf(userPasswordField.getPassword());
-
-            if (loginInfo.containsKey(userID)){
-                if(loginInfo.get(userID).equals(password)) {
-                    messageLabel.setForeground(Color.green);
-                    messageLabel.setText("Login successful");
-                    frame.dispose();
-                    WelcomePage wel = new WelcomePage(userID);
-                }
-                else{
-                    messageLabel.setForeground(Color.red);
-                    messageLabel.setText("Wrong password");
-                }
-            }
-            else {
-                messageLabel.setForeground(Color.red);
-                messageLabel.setText("username not found");
-            }
-
-        }
-        */
     }
 
 }

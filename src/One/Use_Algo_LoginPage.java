@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+
 import api.*;
 public class Use_Algo_LoginPage implements ActionListener {
     GraphAlgo graph;
@@ -74,50 +76,53 @@ public class Use_Algo_LoginPage implements ActionListener {
         if(e.getSource() == ConnButton)
         {
             boolean t=this.graph.isConnected();
+            frame.dispose();
             result_screen s;
             if(t == true) {
-                s = new result_screen(this.graph.getGraph(),"True", 1);
+                s = new result_screen(this.graph.getGraph(),"True", 1,"",null);
             }
             else
             {
-                s = new result_screen(this.graph.getGraph(),"False", 0);
+                s = new result_screen(this.graph.getGraph(),"False", 0,"",null);
             }
         }
         if (e.getSource() == PathDistButton){
             frame.dispose();
-            Short_Test_PathDist_LoginPage s = new Short_Test_PathDist_LoginPage(this.graph);
+            Short_PathDist s = new Short_PathDist(this.graph);
         }
         if (e.getSource() == PathButton){
             frame.dispose();
-            Short_Test_Path_LoginPage sp = new Short_Test_Path_LoginPage();
+            Short_Path sp = new Short_Path(this.graph);
         }
         if(e.getSource() == centerButton)
         {
+            frame.dispose();
             result_screen s;
             if(this.graph.center()!=null) {
                 String str=Integer.toString(this.graph.center().getKey());
-                s = new result_screen(this.graph.getGraph(),"the center is "+str, 1);
+                s = new result_screen(this.graph.getGraph(),"the center is "+str, 1,"",null);
             }
             else if(this.graph.getGraph().nodeSize()==0)
             {
-                s = new result_screen(this.graph.getGraph(),"the graph is empty", 0);
+                s = new result_screen(this.graph.getGraph(),"the graph is empty", 0,"",null);
 
             }
             else
             {
-                s = new result_screen(this.graph.getGraph(),"the graph is not connected", 0);
+                s = new result_screen(this.graph.getGraph(),"the graph is not connected", 0,"",null);
             }
 
         }
         if (e.getSource() == tspButton){
+            LinkedList<NodeData> l=new LinkedList<>();
             frame.dispose();
-            TSP_LoginPage tsp = new TSP_LoginPage();
+            TSP tsp = new TSP(this.graph,l);
         }
         if(e.getSource() == backButton)
         {
             frame.dispose();
-            IDanPasswords idPasswords = new IDanPasswords();
-            LoginPage l=new LoginPage(idPasswords.getLoginInfo(),graph.getGraph());
+            myGraph idPasswords = new myGraph();
+            LoginPage l=new LoginPage(graph.getGraph());
         }
     }
 }

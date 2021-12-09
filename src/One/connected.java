@@ -78,13 +78,13 @@ public class connected implements ActionListener {
                 EdgeData ed = new Edge(src, dest, w);
                 frame.dispose();
                 if (this.graph.getEdges().get(src).containsKey(dest)) {
-                    s = new result_screen(this.graph, "the edge added", 1);
+                    s = new result_screen(this.graph, "the edge added", 1,"",null);
                 } else {
-                    s = new result_screen(this.graph, "try again!", 0);
+                    s = new result_screen(this.graph, "try again!", 0,"",null);
                 }
             }
             else {
-                s = new result_screen(this.graph, "try again!", 0);
+                s = new result_screen(this.graph, "try again!", 0,"",null);
             }
 
         }

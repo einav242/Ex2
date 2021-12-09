@@ -60,18 +60,18 @@ public class Save implements ActionListener {
             frame.dispose();
             result_screen s;
             if(t == true) {
-                s = new result_screen(this.graph,"the file was save!", 1);
+                s = new result_screen(this.graph,"the file was save!", 1,"",null);
             }
             else
             {
-                s = new result_screen(this.graph,"the file was not save!", 0);
+                s = new result_screen(this.graph,"the file was not save!", 0,"",null);
             }
         }
         if(e.getSource() == backButton)
         {
             frame.dispose();
-            IDanPasswords idPasswords = new IDanPasswords();
-            LoginPage l=new LoginPage(idPasswords.getLoginInfo(),graph);
+            myGraph idPasswords = new myGraph();
+            LoginPage l=new LoginPage(graph);
         }
     }
 }

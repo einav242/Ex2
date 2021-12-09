@@ -50,35 +50,39 @@ public class Load implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == loginButton)
-        {
-            GraphAlgo algo=new GraphAlgo(this.graph);
-            String file=Field.getText();
-            boolean t= algo.load(file);
-            frame.dispose();
-            result_screen s;
-            if(t == true) {
-                s = new result_screen(algo.getGraph(),"the file was load!", 1);
-            }
-            else
-            {
-                s = new result_screen(this.graph,"the file was not found!", 0);
+        if(e.getSource() == loginButton) {
+            GraphAlgo algo = new GraphAlgo(this.graph);
+            String file = Field.getText();
+            if (file != "") {
+                boolean t = algo.load(file);
+                frame.dispose();
+                result_screen s;
+                if (t == true) {
+                    s = new result_screen(algo.getGraph(), "the file was load!", 1, "", null);
+                } else {
+                    s = new result_screen(this.graph, "the file was not found!", 0, "", null);
+                }
             }
         }
-        if(e.getSource() == backButton)
-        {
-            GraphAlgo algo=new GraphAlgo(this.graph);
-            String file=Field.getText();
-            boolean t= algo.load(file);
+        if(e.getSource() == backButton) {
             frame.dispose();
-            IDanPasswords idPasswords = new IDanPasswords();
-            if(t==true) {
-                LoginPage l = new LoginPage(idPasswords.getLoginInfo(), algo.getGraph());
+            LoginPage l;
+            GraphAlgo algo = new GraphAlgo(this.graph);
+            if (Field.getText().isEmpty()) {
+                l = new LoginPage(algo.getGraph());
             }
-            else{
-                LoginPage l = new LoginPage(idPasswords.getLoginInfo(), this.graph);
+            else {
+                String file = Field.getText();
+               boolean t = algo.load(file);
+                if (t == true) {
+                    l = new LoginPage(algo.getGraph());
+                    }
+                else {
+                    l = new LoginPage(this.graph);
+                    }
+                }
             }
         }
     }
-}
+
 

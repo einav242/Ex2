@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import api.*;
-public class Short_Test_PathDist_LoginPage implements ActionListener {
+public class Short_PathDist implements ActionListener {
     GraphAlgo algo;
     JFrame frame = new JFrame();
     JButton loginButton = new JButton("enter");
@@ -20,7 +20,7 @@ public class Short_Test_PathDist_LoginPage implements ActionListener {
 
     HashMap<Integer,Integer> loginInfo = new HashMap<Integer,Integer>();
 
-    Short_Test_PathDist_LoginPage(GraphAlgo algo) {
+    Short_PathDist(GraphAlgo algo) {
 
         this.algo=algo;
         srcLabel.setBounds(50,100,75,25);
@@ -60,15 +60,15 @@ public class Short_Test_PathDist_LoginPage implements ActionListener {
             int dest = Integer.parseInt(Field2.getText());
             result_screen s;
             if (this.algo.getGraph().getNode(src) == null || this.algo.getGraph().getNode(dest) == null) {
-                s = new result_screen(this.algo.getGraph(), "try again", 0);
+                s = new result_screen(this.algo.getGraph(), "try again", 0,"",null);
             }
             else {
                 double dist = this.algo.shortestPathDist(src, dest);
                 String d = Double.toString(dist);
                 if (dist != -1) {
-                    s = new result_screen(this.algo.getGraph(), "the distance is " + d, 1);
+                    s = new result_screen(this.algo.getGraph(), "the distance is " + d, 1,"",null);
                 } else {
-                    s = new result_screen(this.algo.getGraph(), "there is no path", 0);
+                    s = new result_screen(this.algo.getGraph(), "there is no path", 0,"",null);
                 }
             }
         }
