@@ -6,7 +6,9 @@ As part of this project, we can use a data structure and algorithms on graphs (o
 - **isConnected** - will returns true if and only if there is a valid path from each node to each other node
 - **shortestPathDist** - Computes the length of the shortest path between src to dest 
 - **shortestPath** - Computes the length of the shortest path between src to dest 
-:bulb: the diffrent betwin **shortestPath** & **shortestPathDist** is in shortestPathDist Computes the length of the shortest path between src to dest and shortestPath will give you the list of nodes that you need to pass from src to dest (src--> n1-->n2-->...dest)
+
+:bulb: the diffrent betwin **shortestPath** & **shortestPathDist** is in shortestPathDist Computes the length of the shortest path               between src to dest and shortestPath will give you the list of nodes 
+        that you need to pass from src to dest (src--> n1-->n2-->...dest)
 
 
 
