@@ -88,4 +88,20 @@ dring implementation of :
 
 ## :bar_chart: Gui
 
+
+
+
+
+
+
+
+
+
+
+## Analysis of the performance of our algorithm On graphs size 1000, 10000, 1000000, 1000000 : 
+
+
+
+
+
 :pushpin:  
