@@ -23,7 +23,6 @@ public class myPanel extends JPanel {
         double max_y=max_y();
         double abs_x=Math.abs(max_x-min_x);
         double abs_y=Math.abs(max_y-min_y);
-        System.out.println(abs_x);
         this.s_x=(900/abs_x);
         this.s_y=(900/abs_y);
         this.l=l;
@@ -51,7 +50,7 @@ public class myPanel extends JPanel {
                     graphics2D.setStroke(new BasicStroke(0));
                     graphics2D.setPaint(Color.BLACK);
                 }
-                graphics2D.drawLine(x1,y1,x2,y2);
+                g.drawLine(x1,y1,x2,y2);
                 if(e.getTag()==-1) {
                     graphics2D.setPaint(Color.red);
                     graphics2D.setStroke(new BasicStroke(3));
