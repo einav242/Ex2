@@ -82,7 +82,7 @@ GraphAlgo class implements DirectedWeightedGraphAlgorithms:
 
 dring implementation of :
 - **isConnected**  - we used BFS algorithm and after we reverse the BFS.
--  **shortestPathDist** - 
+-  **shortestPathDist** -  we used dykstra algorithm 
 - **TSP** - we used in function shortestPathDist  
 
 
