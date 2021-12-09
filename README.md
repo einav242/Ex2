@@ -7,8 +7,9 @@ As part of this project, we can use a data structure and algorithms on graphs (o
 - **shortestPathDist** - Computes the length of the shortest path between src to dest 
 - **shortestPath** - Computes the length of the shortest path between src to dest 
 
-:bulb: the diffrent betwin **shortestPath** & **shortestPathDist** is in shortestPathDist Computes the length of the shortest path               between src to dest and shortestPath will give you the list of nodes 
-        that you need to pass from src to dest (src--> n1-->n2-->...dest)
+:bulb: the diffrent betwin **shortestPath** & **shortestPathDist** is in shortestPathDist Computes the length of the shortest path between src to dest and shortestPath will give you the list of nodes that you need to pass from src to dest (src--> n1-->n2-->...dest) .
+
+- **Center** - Finds the NodeData which minimizes the max distance to all the other nodes Assuming the graph isConnected, elese return null.
 
 
 
