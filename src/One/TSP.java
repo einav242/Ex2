@@ -119,7 +119,7 @@ public class TSP implements ActionListener {
             else {
                 LinkedList<NodeData> l1 = (LinkedList<NodeData>) this.algo.tsp(this.l);
                 frame.dispose();
-                Show show=new Show(this.algo.getGraph(),"list",l1);
+                Show show=new Show(this.algo.getGraph(),l1);
             }
         }
     }

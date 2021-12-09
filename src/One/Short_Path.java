@@ -67,7 +67,7 @@ public class Short_Path implements ActionListener {
             else {
                 LinkedList<NodeData> l1 = (LinkedList<NodeData>) this.algo.shortestPath(src,dest);
                 frame.dispose();
-                Show show=new Show(this.algo.getGraph(),"list",l1);
+                Show show=new Show(this.algo.getGraph(),l1);
             }
         }
 

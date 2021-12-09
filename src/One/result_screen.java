@@ -20,8 +20,8 @@ public class result_screen implements ActionListener {
         this.graph=new DWGraph(graph);
         this.goTo=goTo;
         this.l=l;
-        messageLabel.setBounds(75,100,300,35);
-        messageLabel.setFont(new Font(null, Font.ITALIC,25));
+        messageLabel.setBounds(50,100,400,35);
+        messageLabel.setFont(new Font(null, Font.ITALIC,15));
         if(key==1) {
             messageLabel.setForeground(Color.green);
         }

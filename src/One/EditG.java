@@ -1,7 +1,6 @@
 package One;
 
-import api.DWGraph;
-import api.DirectedWeightedGraph;
+import api.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -102,6 +101,16 @@ public class EditG implements ActionListener {
                 frame.dispose();
                 myGraph idPasswords = new myGraph();
                 LoginPage l=new LoginPage(graph);
+            }
+            if(e.getSource() == getN_Button)
+            {
+                frame.dispose();
+                getNode g=new getNode(this.graph);
+            }
+            if(e.getSource() == getE_Button)
+            {
+                frame.dispose();
+                getEdge ed=new getEdge(this.graph);
             }
         }
 

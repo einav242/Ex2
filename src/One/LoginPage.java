@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.LinkedList;
+
 import api.*;
 public class LoginPage implements ActionListener {
     DWGraph graph;
@@ -87,7 +89,8 @@ public class LoginPage implements ActionListener {
         if(e.getSource()==showGraphButton)
         {
             frame.dispose();
-            Show s=new Show(this.graph,"",null);
+            LinkedList<NodeData>l=new LinkedList<>();
+            Show s=new Show(this.graph,l);
         }
         else{
             messageLabel.setForeground(Color.red);
