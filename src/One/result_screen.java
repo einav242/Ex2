@@ -14,7 +14,7 @@ public class result_screen implements ActionListener {
     result_screen(DirectedWeightedGraph graph, String text, int key)
     {
         this.graph=new DWGraph(graph);
-        messageLabel.setBounds(100,100,250,35);
+        messageLabel.setBounds(75,100,300,35);
         messageLabel.setFont(new Font(null, Font.ITALIC,25));
         if(key==1) {
             messageLabel.setForeground(Color.green);

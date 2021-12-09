@@ -86,6 +86,7 @@ public class connected implements ActionListener {
             else {
                 s = new result_screen(this.graph, "try again!", 0);
             }
+
         }
         if (e.getSource() == backButton){
             frame.dispose();

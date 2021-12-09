@@ -73,7 +73,7 @@ public class LoginPage implements ActionListener {
         }
         if(e.getSource() == algoButton){
             frame.dispose();
-            Use_Algo_LoginPage log = new Use_Algo_LoginPage();
+            Use_Algo_LoginPage log = new Use_Algo_LoginPage(this.graph);
         }
         if (e.getSource() == editButton) {
             frame.dispose();
