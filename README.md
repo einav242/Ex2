@@ -1,6 +1,11 @@
 # **Ex2**
 ### :pushpin: Design and implementation of directed and weighted graphs in Java 
 
+As part of this project, we can use a data structure and algorithms on graphs (oriented and weighted) when this program can create directional graphs and perform the following functions:
+
+-**isConnected** - 
+
+
 
 
 
