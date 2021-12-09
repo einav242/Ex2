@@ -80,7 +80,7 @@ public class Add_Node implements ActionListener {
             NodeData nodeData=new Node(id,location);
             this.graph.addNode(nodeData);
             frame.dispose();
-            result_screen s=new result_screen(this.graph,"the file was save!", 1);;
+            result_screen s;
                 if(this.graph.getNodes().containsKey(id)) {
                     s = new result_screen(this.graph,"the node added", 1);
                 }

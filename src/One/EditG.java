@@ -72,18 +72,19 @@ public class EditG implements ActionListener {
                 frame.dispose();
                 Add_Node lo = new Add_Node(this.graph);
             }
-            if (e.getSource() == removeE_Button) {
+            if(e.getSource() == connectButton){
                 frame.dispose();
-                RemoveEdge_LoginPage lo = new RemoveEdge_LoginPage();
+                connected lo = new connected(this.graph);
             }
             if(e.getSource() == removeN_Button){
                 frame.dispose();
                 Remove_Node lo = new Remove_Node(this.graph);
             }
-            if(e.getSource() == connectButton){
+            if (e.getSource() == removeE_Button) {
                 frame.dispose();
-                Connect_T_Node_LoginPage lo = new Connect_T_Node_LoginPage();
+                RemoveEdge_LoginPage lo = new RemoveEdge_LoginPage();
             }
+
             if(e.getSource() == backButton)
             {
                 frame.dispose();
