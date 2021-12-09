@@ -82,7 +82,7 @@ public class EditG implements ActionListener {
             }
             if (e.getSource() == removeE_Button) {
                 frame.dispose();
-                RemoveEdge_LoginPage lo = new RemoveEdge_LoginPage();
+                RemoveEdge lo = new RemoveEdge(this.graph);
             }
 
             if(e.getSource() == backButton)
