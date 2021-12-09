@@ -12,10 +12,11 @@ public class WelcomePage implements ActionListener {
     JButton loginButton = new JButton("start");
 
 
-        WelcomePage(){
+    WelcomePage(DirectedWeightedGraph graph){
+        this.graph=new DWGraph(graph);
         welcomeLabel.setBounds(0,0,200,35);
         welcomeLabel.setFont(new Font(null,Font.PLAIN,25));
-        welcomeLabel.setText("Hello " );
+
 
         loginButton.setBounds(225,200,100,25);
         loginButton.setFocusable(false);
@@ -27,10 +28,6 @@ public class WelcomePage implements ActionListener {
         frame.setSize(420,420);
         frame.setLayout(null);
         frame.setVisible(true);
-    }
-    WelcomePage(DirectedWeightedGraph graph)
-    {
-        this.graph=new DWGraph(graph);
     }
 
     @Override

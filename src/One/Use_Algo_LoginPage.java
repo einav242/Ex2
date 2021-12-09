@@ -98,6 +98,11 @@ public class Use_Algo_LoginPage implements ActionListener {
                 String str=Integer.toString(this.graph.center().getKey());
                 s = new result_screen(this.graph.getGraph(),"the center is "+str, 1);
             }
+            else if(this.graph.getGraph().nodeSize()==0)
+            {
+                s = new result_screen(this.graph.getGraph(),"the graph is empty", 0);
+
+            }
             else
             {
                 s = new result_screen(this.graph.getGraph(),"the graph is not connected", 0);
