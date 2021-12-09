@@ -65,7 +65,12 @@ public class TSP implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == nextButton) {
+        if (e.getSource() == loginButton || Field1.getText().isEmpty())
+        {
+            frame.dispose();
+            TSP n=new TSP(this.algo,this.l);
+        }
+        else if (e.getSource() == nextButton) {
             int id = Integer.parseInt(Field1.getText());
             NodeData nodeData = this.algo.getGraph().getNode(id);
             frame.dispose();
@@ -82,7 +87,6 @@ public class TSP implements ActionListener {
         }
         if(e.getSource() == loginButton)
         {
-            System.out.println("bar"+l);
             if(this.l.size()==0)
             {
                 frame.dispose();
@@ -104,7 +108,6 @@ public class TSP implements ActionListener {
                 {
                     lk.add(iter.next());
                 }
-                System.out.println(lk);
                 frame.dispose();
                 Show show=new Show(this.algo.getGraph(),lk);
             }

@@ -50,7 +50,12 @@ public class Load implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == loginButton) {
+        if (e.getSource() == loginButton || Field.getText().isEmpty())
+        {
+            frame.dispose();
+            Load n=new Load(this.graph);
+        }
+         else if(e.getSource() == loginButton) {
             GraphAlgo algo = new GraphAlgo(this.graph);
             String file = Field.getText();
             if (file != "") {

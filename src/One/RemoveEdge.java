@@ -56,7 +56,12 @@ public class RemoveEdge implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == loginButton)
+        if (e.getSource() == loginButton || src_Field.getText().isEmpty() || dest_Field.getText().isEmpty())
+        {
+            frame.dispose();
+            RemoveEdge n=new RemoveEdge(this.graph);
+        }
+         else if(e.getSource() == loginButton)
         {
             int src=Integer.parseInt(src_Field.getText());
             int dest=Integer.parseInt(dest_Field.getText());

@@ -67,7 +67,12 @@ public class connected implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() ==  loginButton)
+        if (e.getSource() == loginButton || srcIDField.getText().isEmpty() || destIDField.getText().isEmpty())
+        {
+            frame.dispose();
+            connected n=new connected(this.graph);
+        }
+        else if(e.getSource() ==  loginButton)
         {
             int src=Integer.parseInt(srcIDField.getText());
             int dest=Integer.parseInt(destIDField.getText());

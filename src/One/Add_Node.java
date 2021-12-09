@@ -71,22 +71,26 @@ public class Add_Node implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton) {
-            int id = Integer.parseInt(Field1.getText());
-            double x = Double.parseDouble(Field2.getText());
-            double y = Double.parseDouble(Field3.getText());
-            double z = Double.parseDouble(Field4.getText());
-            GeoLocation location=new Location(x,y,z);
-            NodeData nodeData=new Node(id,location);
-            this.graph.addNode(nodeData);
-            frame.dispose();
-            result_screen s;
-                if(this.graph.getNodes().containsKey(id)) {
-                    s = new result_screen(this.graph,"the node added", 1,"",null);
-                }
-                else
-                {
-                    s = new result_screen(this.graph,"try again!", 0,"",null);
+            if (e.getSource() == loginButton || Field1.getText().isEmpty() || Field2.getText().isEmpty()||
+                    Field3.getText().isEmpty()|| Field4.getText().isEmpty())
+             {
+                frame.dispose();
+                Add_Node n=new Add_Node(this.graph);
+             }
+            else if(e.getSource() == loginButton) {
+                int id = Integer.parseInt(Field1.getText());
+                double x = Double.parseDouble(Field2.getText());
+                double y = Double.parseDouble(Field3.getText());
+                double z = Double.parseDouble(Field4.getText());
+                GeoLocation location = new Location(x, y, z);
+                NodeData nodeData = new Node(id, location);
+                this.graph.addNode(nodeData);
+                frame.dispose();
+                result_screen s;
+                if (this.graph.getNodes().containsKey(id)) {
+                    s = new result_screen(this.graph, "the node added", 1, "", null);
+                } else {
+                    s = new result_screen(this.graph, "try again!", 0, "", null);
                 }
             }
             if (e.getSource() == backButton) {
@@ -95,4 +99,5 @@ public class Add_Node implements ActionListener {
             }
         }
     }
+
 

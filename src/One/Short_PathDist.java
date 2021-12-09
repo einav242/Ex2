@@ -55,7 +55,12 @@ public class Short_PathDist implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == loginButton) {
+        if (e.getSource() == loginButton || Field1.getText().isEmpty() || Field2.getText().isEmpty())
+        {
+            frame.dispose();
+            Short_PathDist n=new Short_PathDist(this.algo);
+        }
+        else if(e.getSource() == loginButton) {
             int src = Integer.parseInt(Field1.getText());
             int dest = Integer.parseInt(Field2.getText());
             result_screen s;

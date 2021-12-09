@@ -57,7 +57,12 @@ public class Remove_Node implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == loginButton)
+        if (e.getSource() == loginButton || Field.getText().isEmpty())
+        {
+            frame.dispose();
+            Remove_Node n=new Remove_Node(this.graph);
+        }
+        else if(e.getSource() == loginButton)
         {
             int key=Integer.parseInt(Field.getText());
             result_screen s;

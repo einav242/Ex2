@@ -50,7 +50,12 @@ import java.awt.event.ActionListener;
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource() == loginButton) {
+            if (e.getSource() == loginButton || Field.getText().isEmpty())
+            {
+                frame.dispose();
+                getNode n=new getNode(this.graph);
+            }
+             else if(e.getSource() == loginButton) {
                 int key=Integer.parseInt(Field.getText());
                 frame.dispose();
                 result_screen s;

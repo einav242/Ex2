@@ -52,7 +52,12 @@ public class Save implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == loginButton)
+        if (e.getSource() == loginButton || Field.getText().isEmpty())
+        {
+            frame.dispose();
+            Save n=new Save(this.graph);
+        }
+       else if(e.getSource() == loginButton)
         {
             GraphAlgo algo=new GraphAlgo(this.graph);
             String file=Field.getText();
