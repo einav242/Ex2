@@ -20,6 +20,7 @@ public class result_screen implements ActionListener {
         this.graph=new DWGraph(graph);
         this.goTo=goTo;
         this.l=l;
+        System.out.println("r"+l);
         messageLabel.setBounds(50,100,400,35);
         messageLabel.setFont(new Font(null, Font.ITALIC,15));
         if(key==1) {
@@ -47,11 +48,11 @@ public class result_screen implements ActionListener {
         if (this.goTo == "tsp") {
             frame.dispose();
             GraphAlgo g = new GraphAlgo(this.graph);
-            TSP t = new TSP(g, l);
+            TSP t = new TSP(g, this.l);
         } else {
             frame.dispose();
             myGraph idPasswords = new myGraph();
-            LoginPage l = new LoginPage(graph);
+            LoginPage ln = new LoginPage(graph);
         }
     }
 

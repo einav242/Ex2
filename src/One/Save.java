@@ -70,7 +70,6 @@ public class Save implements ActionListener {
         if(e.getSource() == backButton)
         {
             frame.dispose();
-            myGraph idPasswords = new myGraph();
             LoginPage l=new LoginPage(graph);
         }
     }

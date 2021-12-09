@@ -308,6 +308,9 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         if (cities.size() == 0){
             return null;
         }
+        if (cities.size() == 1){
+            return cities;
+        }
         List<NodeData> ans = new ArrayList<>();
         List<NodeData> temp = new ArrayList<>();
         for (int i = 0; i < cities.size(); i++) {
@@ -322,20 +325,20 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         int start = minStart(cities);
         while (cities.size() != 0) {
             double min = Double.MAX_VALUE;
-            for (int j = 0; j < cities.size(); j++) {
+            for (NodeData j :cities) {
                 if (ans.size() != 0) {
                     start = ans.get(ans.size() - 1).getKey();
                 }
                 else {
                     if (0  <  i ) {
-                        start = cities.get(i).getKey();
+                        start = j.getKey();
                     }
                 }
-                temp_Dist = shortestPathDist(start, cities.get(j).getKey());
-                if (temp_Dist < min && start != cities.get(j).getKey()) {
+                temp_Dist = shortestPathDist(start, j.getKey());
+                if (temp_Dist < min && start != j.getKey()) {
                     min = temp_Dist;
-                    temp = shortestPath(start, cities.get(j).getKey());
-                    d = cities.get(j).getKey();
+                    temp = shortestPath(start, j.getKey());
+                    d = j.getKey();
                 }
             }
             i++;

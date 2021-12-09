@@ -9,15 +9,14 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
 
-public class myPanel extends JPanel implements ActionListener {
+public class myPanel extends JPanel{
     DWGraph graph;
-    LinkedList<NodeData> l;
+    LinkedList l;
     double s_x;
     double s_y;
     DecimalFormat df2;
-    JButton backButton = new JButton("Back");
 
-    myPanel(DirectedWeightedGraph graph, LinkedList<NodeData> l) {
+    myPanel(DirectedWeightedGraph graph, LinkedList l) {
         this.df2 = new DecimalFormat("#.##");
         this.setPreferredSize(new Dimension(600, 600));
         this.graph = new DWGraph(graph);
@@ -30,7 +29,6 @@ public class myPanel extends JPanel implements ActionListener {
         this.s_x = (500 / abs_x);
         this.s_y = (500 / abs_y);
         this.l = l;
-
     }
 
     public void paint(Graphics g) {
@@ -44,10 +42,12 @@ public class myPanel extends JPanel implements ActionListener {
                 NodeData n_dest = this.graph.getNode(j);
                 int x2 = (int) ((n_dest.getLocation().x() - min_x()) * this.s_x);
                 int y2 = (int) ((n_dest.getLocation().y() - min_y()) * this.s_y);
-                if (l.contains(this.graph.getNode(i)) && l.contains(this.graph.getNode(j))) {
+                if (l!=null && l.contains( this.graph.getNode(i)) && l.contains((this.graph.getNode(j))))
+                {
                     graphics2D.setStroke(new BasicStroke(5));
                     graphics2D.setPaint(Color.red);
-                } else {
+                }
+                else {
                     graphics2D.setStroke(new BasicStroke(0));
                     graphics2D.setPaint(Color.BLACK);
                 }
@@ -123,10 +123,6 @@ public class myPanel extends JPanel implements ActionListener {
             return max;
         }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }
 
 

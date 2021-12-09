@@ -12,6 +12,7 @@ public class Short_Path implements ActionListener {
     GraphAlgo algo;
     JFrame frame = new JFrame();
     JButton loginButton = new JButton("enter");
+    JButton backButton = new JButton("Back");
 
     JTextField Field1 = new JTextField();
     JTextField Field2 = new JTextField();
@@ -39,12 +40,17 @@ public class Short_Path implements ActionListener {
         loginButton.setFocusable(false);
         loginButton.addActionListener(this);
 
+        backButton.setBounds(300,50,100,25);
+        backButton.setFocusable(false);
+        backButton.addActionListener(this);
+
         frame.add(srcLabel);
         frame.add(destLabel);
         frame.add(messageLabel);
         frame.add(Field1);
         frame.add(Field2);
         frame.add(loginButton);
+        frame.add(backButton);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420,420);
         frame.setLayout(null);
@@ -54,12 +60,17 @@ public class Short_Path implements ActionListener {
 
         @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==loginButton)
+            result_screen s;
+            if(e.getSource()==loginButton && Field1.getText().isEmpty() && Field2.getText().isEmpty())
+        {
+            s = new result_screen(this.algo.getGraph(),"the field are empathy", 0,"",null);
+
+        }
+        else if(e.getSource()==loginButton)
         {
             int src = Integer.parseInt(Field1.getText());
             int dest = Integer.parseInt(Field2.getText());
             frame.dispose();
-            result_screen s;
             if(this.algo.getGraph().getNode(src)==null || this.algo.getGraph().getNode(dest)==null)
             {
                 s = new result_screen(this.algo.getGraph(),"the node is not in the graph", 0,"",null);
@@ -70,6 +81,11 @@ public class Short_Path implements ActionListener {
                 Show show=new Show(this.algo.getGraph(),l1);
             }
         }
+            if(e.getSource() == backButton)
+            {
+                frame.dispose();
+                LoginPage l=new LoginPage(this.algo.getGraph());
+            }
 
     }
 }

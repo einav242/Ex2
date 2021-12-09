@@ -14,25 +14,29 @@ public class Show  extends JFrame implements ActionListener{
     myPanel panel;
     JButton backButton = new JButton("Back");
 
-    public Show(DirectedWeightedGraph g ,LinkedList<NodeData>l)
+    public Show(DirectedWeightedGraph g ,LinkedList l)
     {
         this.graph=new DWGraph(g);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.panel=new myPanel(graph,l);
+        backButton.setBounds(500,30,65,25);
+        backButton.setFocusable(false);
+        backButton.addActionListener(this);
+        this.add(backButton);
         this.add(panel);
         this.pack();
         this.setLayout(null);
         this.setVisible(true);
+
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if(e.getSource() == backButton)
-//        {
-//            this.dispose();
-//            myGraph idPasswords = new myGraph();
-//            LoginPage l=new LoginPage(graph);
-//        }
+        if(e.getSource() == backButton)
+        {
+            this.dispose();
+            LoginPage l=new LoginPage(graph);
+        }
     }
 }
