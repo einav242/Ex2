@@ -67,6 +67,10 @@ public class LoginPage implements ActionListener {
             frame.dispose();
             Save s = new Save(this.graph);
         }
+        if(e.getSource() == loginButton){
+            frame.dispose();
+            Load l = new Load(this.graph);
+        }
         if(e.getSource() == algoButton){
             frame.dispose();
             Use_Algo_LoginPage log = new Use_Algo_LoginPage();

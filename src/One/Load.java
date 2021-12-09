@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import api.*;
-public class Save implements ActionListener {
+public class Load implements ActionListener {
     DWGraph graph;
     JFrame frame = new JFrame();
     JButton loginButton = new JButton("enter");
@@ -18,10 +18,8 @@ public class Save implements ActionListener {
     JLabel messageLabel = new JLabel();
 
 
-    Save(DirectedWeightedGraph graph)
+    Load(DirectedWeightedGraph graph)
     {
-
-        //  loginInfo = loginInfoOriginal;
         this.graph=new DWGraph(graph);
         userIDLabel.setBounds(50,100,75,25);
 
@@ -56,22 +54,31 @@ public class Save implements ActionListener {
         {
             GraphAlgo algo=new GraphAlgo(this.graph);
             String file=Field.getText();
-           boolean t= algo.save(file);
+            boolean t= algo.load(file);
             frame.dispose();
             result_screen s;
             if(t == true) {
-                s = new result_screen(this.graph,"the file was save!", 1);
+                s = new result_screen(algo.getGraph(),"the file was load!", 1);
             }
             else
             {
-                s = new result_screen(this.graph,"the file was not save!", 0);
+                s = new result_screen(this.graph,"the file was not found!", 0);
             }
         }
         if(e.getSource() == backButton)
         {
+            GraphAlgo algo=new GraphAlgo(this.graph);
+            String file=Field.getText();
+            boolean t= algo.load(file);
             frame.dispose();
             IDanPasswords idPasswords = new IDanPasswords();
-            LoginPage l=new LoginPage(idPasswords.getLoginInfo(),graph);
+            if(t==true) {
+                LoginPage l = new LoginPage(idPasswords.getLoginInfo(), algo.getGraph());
+            }
+            else{
+                LoginPage l = new LoginPage(idPasswords.getLoginInfo(), this.graph);
+            }
         }
     }
 }
+

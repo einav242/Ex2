@@ -451,6 +451,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
+            return false;
         }
         return true;
     }

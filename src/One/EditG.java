@@ -1,5 +1,6 @@
 package One;
 
+import api.DWGraph;
 import api.DirectedWeightedGraph;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ public class EditG implements ActionListener {
         JButton connectButton = new JButton("Connect Two Node");
         JButton removeN_Button = new JButton("Remove Node");
         JButton removeE_Button = new JButton("Remove Edge");
-
+        JButton backButton = new JButton("Back");
 
         JTextField userIDField = new JTextField();
         JPasswordField userPasswordField = new JPasswordField();
@@ -24,11 +25,15 @@ public class EditG implements ActionListener {
         HashMap<Integer,Integer> loginInfo = new HashMap<Integer,Integer>();
 
         EditG(DirectedWeightedGraph graph){
-            this.graph=graph;
+            this.graph=new DWGraph(graph);
             JLabel lblAdminLoginForm = new JLabel("Choose Your Edit To The Graph");
             lblAdminLoginForm.setBounds(85,50,300,25);
             lblAdminLoginForm.setForeground(Color.GRAY);
             lblAdminLoginForm.setFont(new Font("Tacoma", Font.PLAIN, 16));
+
+            backButton.setBounds(300,30,100,25);
+            backButton.setFocusable(false);
+            backButton.addActionListener(this);
 
             addButton.setBounds(100,100,200,25);
             addButton.setFocusable(false);
@@ -54,6 +59,7 @@ public class EditG implements ActionListener {
             frame.add(userIDField);
             frame.add(userPasswordField);
             frame.add(addButton);
+            frame.add(backButton);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(420,420);
             frame.setLayout(null);
@@ -62,6 +68,10 @@ public class EditG implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == addButton) {
+                frame.dispose();
+                Add_Node lo = new Add_Node(this.graph);
+            }
             if (e.getSource() == removeE_Button) {
                 frame.dispose();
                 RemoveEdge_LoginPage lo = new RemoveEdge_LoginPage();
@@ -74,13 +84,11 @@ public class EditG implements ActionListener {
                 frame.dispose();
                 Connect_T_Node_LoginPage lo = new Connect_T_Node_LoginPage();
             }
-            if(e.getSource() == addButton){
+            if(e.getSource() == backButton)
+            {
                 frame.dispose();
-                Add_Node_LoginPage lo = new Add_Node_LoginPage();
-            }
-            else{
-                messageLabel.setForeground(Color.red);
-                messageLabel.setText("Not Good");
+                IDanPasswords idPasswords = new IDanPasswords();
+                LoginPage l=new LoginPage(idPasswords.getLoginInfo(),graph);
             }
 
          /*

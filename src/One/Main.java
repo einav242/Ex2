@@ -10,6 +10,5 @@ public class Main {
         IDanPasswords idPasswords = new IDanPasswords();
 
         LoginPage loginPage = new LoginPage(idPasswords.getLoginInfo(),graph);
-
     }
 }
