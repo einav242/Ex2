@@ -4,6 +4,9 @@
 As part of this project, we can use a data structure and algorithms on graphs (oriented and weighted) when this program can create directional graphs and perform the following functions:
 
 - **isConnected** - will returns true if and only if there is a valid path from each node to each other node
+- **shortestPathDist** - Computes the length of the shortest path between src to dest 
+- **shortestPath** - Computes the length of the shortest path between src to dest 
+the diffrent betwin **shortestPath** & **shortestPathDist** is in shortestPathDist Computes the length of the shortest path between src to dest and shortestPath will give you the list of nodes that you need to pass from src to dest (src--> n1-->n2-->...dest)
 
 
 
