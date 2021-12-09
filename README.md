@@ -12,7 +12,7 @@ As part of this project, we can use a data structure and algorithms on graphs (o
 - **Center** - Finds the NodeData which minimizes the max distance to all the other nodes Assuming the graph isConnected, elese return null.
 - **TSP** - Computes a list of consecutive nodes which go over all the nodes in cities the sum of the weights of all the consecutive (pairs) of nodes (directed) is the "cost" of the solution the lower the better.
 
- ### Plan the realization of the project We'll realize First the **Main Classes and Methods** and after the Gui. 
+ ### Plan the realization of the project We'll realize First the **Main Classes and Methods** and after the Gui:
 
 ## :heavy_check_mark: Main Classes and Methods:
 
@@ -79,5 +79,13 @@ GraphAlgo class implements DirectedWeightedGraphAlgorithms:
 | `tsp(List<NodeData> cities)` | Computes a list of consecutive nodes which go over all the nodes in cities |
 | `save(String file)` |  Saves this weighted (directed) graph to the given file name - in JSON format |
 | `load(String file)` |  This method loads a graph to this graph algorithm |
+
+dring implementation of :
+- **isConnected**  - we used BFS algorithm and after we reverse the BFS.
+-  **shortestPathDist** - 
+- **TSP** - we used in function shortestPathDist  
+
+
+## :bar_chart: Gui
 
 :pushpin:  
