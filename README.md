@@ -10,8 +10,7 @@ As part of this project, we can use a data structure and algorithms on graphs (o
 :bulb: the diffrent betwin **shortestPath** & **shortestPathDist** is in shortestPathDist Computes the length of the shortest path between src to dest and shortestPath will give you the list of nodes that you need to pass from src to dest (src--> n1-->n2-->...dest) .
 
 - **Center** - Finds the NodeData which minimizes the max distance to all the other nodes Assuming the graph isConnected, elese return null.
-
-
+- **TSP** - Computes a list of consecutive nodes which go over all the nodes in cities the sum of the weights of all the consecutive (pairs) of nodes (directed) is the "cost" of the solution the lower the better.
 
 
 
