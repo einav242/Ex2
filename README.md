@@ -3,7 +3,7 @@
 
 As part of this project, we can use a data structure and algorithms on graphs (oriented and weighted) when this program can create directional graphs and perform the following functions:
 
--**isConnected** - 
+- **isConnected** - will returns true if and only if there is a valid path from each node to each other node
 
 
 
