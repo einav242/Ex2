@@ -1,5 +1,5 @@
 # **Ex2**
-### Design and implementation of directed and weighted graphs in Java
+### Design and implementation of directed and weighted graphs in Java :world_map:
 ## The First part (api package):
 
 Location class implemets GeoLocation
