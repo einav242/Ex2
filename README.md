@@ -42,12 +42,12 @@ DWGraph class implements DirectedWeightedGraph:
 
 | Methods  | Details |
 | ------------- | ------------- |
-| getSrc()  | Returns The id of the source node of this edge |
-| getDest()  | 	Returns The id of the destination node of this edge  |
-| getWeight() | Returns	the weight of this edge (positive value)  |
-| getInfo()  | Returns the remark (meta data) associated with this edge  |
-| setInfo(String s)  | Allows changing the remark (meta data) associated with this edge |
-| getTag()  | 	Returns Temporal data , white = 0 |
-| setTag(int t) |  setting the "tag" value for temporal marking an edge |
+| `getSrc()` | Returns The id of the source node of this edge |
+| `getDest()`| 	Returns The id of the destination node of this edge  |
+| `getWeight()`| Returns	the weight of this edge (positive value)  |
+| `getInfo()` | Returns the remark (meta data) associated with this edge  |
+| `setInfo(String s)` | Allows changing the remark (meta data) associated with this edge |
+| `getTag()` | 	Returns Temporal data , white = 0 |
+| `setTag(int t)` |  setting the "tag" value for temporal marking an edge |
 
 :pushpin:  
