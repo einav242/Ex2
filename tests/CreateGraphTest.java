@@ -13,16 +13,19 @@ class CreateGraphTest {
         CreateGraph createGraph1=new CreateGraph(1000,1000);
         GraphAlgo algo= (GraphAlgo) createGraph1.rand();
         //algo.isConnected();
-        algo.center();
-//        Iterator<NodeData>iter=algo.getGraph().nodeIter();
-//        int i= (int) (Math.random()*algo.getGraph().nodeSize());
-//        int j=0;
-//        NodeData n1 = null;
-//        while (iter.hasNext() && j<i)
-//        {
-//            n1=iter.next();
-//            i++;
-//        }
+       // algo.center();
+        Iterator<NodeData>iter=algo.getGraph().nodeIter();
+        int i= (int) (Math.random()*algo.getGraph().nodeSize());
+        int j=0;
+        LinkedList<NodeData>l=new LinkedList<>();
+
+        NodeData n1 = null;
+        while (iter.hasNext() && j<i)
+        {
+            n1=iter.next();
+            l.add(n1);
+            i++;
+        }
 //        i= (int) (Math.random()*algo.getGraph().nodeSize());
 //        j=0;
 //        NodeData n2=null;
@@ -32,10 +35,9 @@ class CreateGraphTest {
 //            i++;
 //        }
 //        algo.shortestPath(n1.getKey(),n2.getKey());
-//        LinkedList<NodeData>l=new LinkedList<>();
 //        l.add(n1);
 //        l.add(n2);
         //algo.shortestPathDist(n1.getKey(),n2.getKey());
-        //algo.tsp(l);
+        algo.tsp(l);
     }
 }
