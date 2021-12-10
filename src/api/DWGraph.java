@@ -85,19 +85,7 @@ public class DWGraph implements DirectedWeightedGraph{
 
     @Override
     public Iterator<NodeData> nodeIter() {
-        int temp_mc=this.mc;
-        ArrayList<NodeData> d=new ArrayList<>();
-        Collection<Integer> keys = this.nodes.keySet();
-        for(int i : keys)
-        {
-            d.add(this.nodes.get(i));
-        }
-        Iterator<NodeData> iterator=d.iterator();
-        if(mc!=temp_mc)
-        {
-            throw new RuntimeException();
-        }
-        return iterator;
+        return this.nodes.values().iterator();
     }
 
     @Override
