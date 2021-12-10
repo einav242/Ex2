@@ -55,7 +55,7 @@ public class Short_PathDist implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton || Field1.getText().isEmpty() || Field2.getText().isEmpty())
+        if (e.getSource() == loginButton && (Field1.getText().isEmpty() || Field2.getText().isEmpty()))
         {
             frame.dispose();
             Short_PathDist n=new Short_PathDist(this.algo);
@@ -63,17 +63,18 @@ public class Short_PathDist implements ActionListener {
         else if(e.getSource() == loginButton) {
             int src = Integer.parseInt(Field1.getText());
             int dest = Integer.parseInt(Field2.getText());
+            frame.dispose();
             result_screen s;
             if (this.algo.getGraph().getNode(src) == null || this.algo.getGraph().getNode(dest) == null) {
-                s = new result_screen(this.algo.getGraph(), "try again", 0,"",null);
+                s = new result_screen(this.algo.getGraph(), "try again", "",null,Color.red);
             }
             else {
                 double dist = this.algo.shortestPathDist(src, dest);
                 String d = Double.toString(dist);
                 if (dist != -1) {
-                    s = new result_screen(this.algo.getGraph(), "the distance is " + d, 1,"",null);
+                    s = new result_screen(this.algo.getGraph(), "the distance is " + d, "",null,Color.MAGENTA);
                 } else {
-                    s = new result_screen(this.algo.getGraph(), "there is no path", 0,"",null);
+                    s = new result_screen(this.algo.getGraph(), "there is no path", "",null,Color.red);
                 }
             }
         }

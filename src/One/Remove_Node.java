@@ -57,7 +57,7 @@ public class Remove_Node implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton || Field.getText().isEmpty())
+        if (e.getSource() == loginButton && Field.getText().isEmpty())
         {
             frame.dispose();
             Remove_Node n=new Remove_Node(this.graph);
@@ -65,20 +65,21 @@ public class Remove_Node implements ActionListener {
         else if(e.getSource() == loginButton)
         {
             int key=Integer.parseInt(Field.getText());
+            frame.dispose();
             result_screen s;
-            if(this.graph.getNodes().containsKey(key))
+            if(this.graph.getNode(key)!=null)
             {
                 this.graph.removeNode(key);
-                if(!this.graph.getNodes().containsKey(key)) {
-                    s = new result_screen(this.graph, "the node removed", 1,"",null);
+                if(this.graph.getNode(key)==null) {
+                    s = new result_screen(this.graph, "the node removed", "",null,Color.green);
                 }
                 else {
-                    s = new result_screen(this.graph,"try again!", 0,"",null);
+                    s = new result_screen(this.graph,"try again!", "",null,Color.red);
                 }
             }
             else
             {
-                s = new result_screen(this.graph,"try again!", 0,"",null);
+                s = new result_screen(this.graph,"the node is not in the graph", "",null,Color.red);
             }
         }
         if (e.getSource() == backButton) {

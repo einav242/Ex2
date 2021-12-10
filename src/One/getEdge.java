@@ -56,7 +56,7 @@ public class getEdge implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton || Field1.getText().isEmpty() || Field2.getText().isEmpty())
+        if (e.getSource() == loginButton && (Field1.getText().isEmpty() || Field2.getText().isEmpty()))
         {
             frame.dispose();
             getEdge n=new getEdge(this.graph);
@@ -68,18 +68,18 @@ public class getEdge implements ActionListener {
             result_screen s;
             if(this.graph.getNode(src)==null && this.graph.getNode(dest)==null)
             {
-                s = new result_screen(this.graph,"the node is not in the graph", 0,"",null);
+                s = new result_screen(this.graph,"the node is not in the graph","",null,Color.red);
             }
             else if(!this.graph.getEdges().get(src).containsKey(dest))
             {
-                s = new result_screen(this.graph,"the edge is not in the graph", 0,"",null);
+                s = new result_screen(this.graph,"the edge is not in the graph", "",null,Color.red);
             }
             else {
                 EdgeData ed=this.graph.getEdge(src,dest);
                 String src1=Integer.toString(ed.getSrc());
                 String dest1=Double.toString(ed.getDest());
                 String w=Double.toString(ed.getWeight());
-                s = new result_screen(this.graph,"src: "+src1+", "+"dest: "+dest1+", "+"weigh: "+w, 1,"",null);
+                s = new result_screen(this.graph,"src: "+src1+", "+"dest: "+dest1+", "+"weigh: "+w, "",null,Color.blue);
             }
         }
         if(e.getSource() == backButton) {

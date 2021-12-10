@@ -61,10 +61,10 @@ public class Short_Path implements ActionListener {
         @Override
     public void actionPerformed(ActionEvent e) {
             result_screen s;
-            if(e.getSource()==loginButton && Field1.getText().isEmpty() && Field2.getText().isEmpty())
+            if(e.getSource()==loginButton && (Field1.getText().isEmpty() || Field2.getText().isEmpty()))
         {
-            s = new result_screen(this.algo.getGraph(),"the field are empathy", 0,"",null);
-
+            frame.dispose();
+            Short_Path sh=new Short_Path(this.algo);
         }
         else if(e.getSource()==loginButton)
         {
@@ -73,7 +73,7 @@ public class Short_Path implements ActionListener {
             frame.dispose();
             if(this.algo.getGraph().getNode(src)==null || this.algo.getGraph().getNode(dest)==null)
             {
-                s = new result_screen(this.algo.getGraph(),"the node is not in the graph", 0,"",null);
+                s = new result_screen(this.algo.getGraph(),"the node is not in the graph", "",null,Color.red);
             }
             else {
                 LinkedList<NodeData> l1 = (LinkedList<NodeData>) this.algo.shortestPath(src,dest);

@@ -15,19 +15,14 @@ public class result_screen implements ActionListener {
     String goTo;
     LinkedList<NodeData>l;
 
-    result_screen(DirectedWeightedGraph graph, String text, int key, String goTo, LinkedList<NodeData>l)
+    result_screen(DirectedWeightedGraph graph, String text, String goTo, LinkedList<NodeData>l, Color color)
     {
         this.graph=new DWGraph(graph);
         this.goTo=goTo;
         this.l=l;
-        messageLabel.setBounds(50,100,400,35);
-        messageLabel.setFont(new Font(null, Font.ITALIC,15));
-        if(key==1) {
-            messageLabel.setForeground(Color.green);
-        }
-        else {
-            messageLabel.setForeground(Color.red);
-        }
+        messageLabel.setBounds(35,100,400,35);
+        messageLabel.setFont(new Font(null, Font.ITALIC,20));
+        messageLabel.setForeground(color);
         messageLabel.setText(text);
 
         backButton.setBounds(300,50,100,25);
@@ -55,6 +50,6 @@ public class result_screen implements ActionListener {
         }
     }
 
-    }
+}
 
 

@@ -65,7 +65,7 @@ public class TSP implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton || Field1.getText().isEmpty())
+        if (e.getSource() == loginButton && Field1.getText().isEmpty() && this.l.size()==0)
         {
             frame.dispose();
             TSP n=new TSP(this.algo,this.l);
@@ -76,39 +76,33 @@ public class TSP implements ActionListener {
             frame.dispose();
             result_screen s;
             if (this.algo.getGraph().getNode(id) == null) {
-                s = new result_screen(this.algo.getGraph(),"the node is not in the graph", 0,"tsp",this.l);
+                s = new result_screen(this.algo.getGraph(),"the node is not in the graph", "tsp",this.l,Color.red);
 
             }
             else {
                 add(nodeData);
-                s = new result_screen(this.algo.getGraph(), "the node was added to the list", 1, "tsp", this.l);
+                s = new result_screen(this.algo.getGraph(), "the node was added to the list",  "tsp", this.l,Color.green);
                 System.out.println(l);
             }
         }
-        if(e.getSource() == loginButton)
+        if(e.getSource() == loginButton && this.l.size()!=0)
         {
-            if(this.l.size()==0)
-            {
-                frame.dispose();
-                result_screen s;
-                s = new result_screen(this.algo.getGraph(),"the list is empty", 0,"",this.l);
-            }
             List l1 =this.algo.tsp(this.l);
-             if(l1==null)
+            if(l1==null)
             {
                 frame.dispose();
                 result_screen s;
-                s = new result_screen(this.algo.getGraph(),"the nodes are not connected", 0,"",this.l);
+                s = new result_screen(this.algo.getGraph(),"the nodes are not connected", "",this.l,Color.red);
             }
             else
             {
+                frame.dispose();
                 Iterator<NodeData> iter=l1.iterator();
                 LinkedList<NodeData> lk=new LinkedList();
                 while (iter.hasNext())
                 {
                     lk.add(iter.next());
                 }
-                frame.dispose();
                 Show show=new Show(this.algo.getGraph(),lk);
             }
         }

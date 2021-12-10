@@ -67,7 +67,7 @@ public class connected implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton || srcIDField.getText().isEmpty() || destIDField.getText().isEmpty())
+        if (e.getSource() == loginButton && (srcIDField.getText().isEmpty() || destIDField.getText().isEmpty()))
         {
             frame.dispose();
             connected n=new connected(this.graph);
@@ -83,23 +83,19 @@ public class connected implements ActionListener {
                 EdgeData ed = new Edge(src, dest, w);
                 frame.dispose();
                 if (this.graph.getEdges().get(src).containsKey(dest)) {
-                    s = new result_screen(this.graph, "the edge added", 1,"",null);
+                    s = new result_screen(this.graph, "the edge added","",null,Color.green);
                 } else {
-                    s = new result_screen(this.graph, "try again!", 0,"",null);
+                    s = new result_screen(this.graph, "try again!","",null,Color.red);
                 }
             }
             else {
-                s = new result_screen(this.graph, "try again!", 0,"",null);
+                s = new result_screen(this.graph, "try again!", "",null,Color.red);
             }
 
         }
         if (e.getSource() == backButton){
             frame.dispose();
             EditG well = new EditG(this.graph);
-        }
-        else{
-            messageLabel.setForeground(Color.red);
-            messageLabel.setText("Not Good");
         }
     }
 }

@@ -52,7 +52,7 @@ public class Save implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton || Field.getText().isEmpty())
+        if (e.getSource() == loginButton && Field.getText().isEmpty())
         {
             frame.dispose();
             Save n=new Save(this.graph);
@@ -65,11 +65,11 @@ public class Save implements ActionListener {
             frame.dispose();
             result_screen s;
             if(t == true) {
-                s = new result_screen(this.graph,"the file was save!", 1,"",null);
+                s = new result_screen(this.graph,"the file was save!", "",null,Color.green);
             }
             else
             {
-                s = new result_screen(this.graph,"the file was not save!", 0,"",null);
+                s = new result_screen(this.graph,"the file was not save!", "",null,Color.red);
             }
         }
         if(e.getSource() == backButton)

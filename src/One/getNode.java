@@ -50,7 +50,7 @@ import java.awt.event.ActionListener;
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == loginButton || Field.getText().isEmpty())
+            if (e.getSource() == loginButton && Field.getText().isEmpty())
             {
                 frame.dispose();
                 getNode n=new getNode(this.graph);
@@ -61,7 +61,7 @@ import java.awt.event.ActionListener;
                 result_screen s;
                 if(this.graph.getNode(key)==null)
                 {
-                    s = new result_screen(this.graph,"the node is not in the graph", 0,"",null);
+                    s = new result_screen(this.graph,"the node is not in the graph", "",null,Color.red);
                 }
                 else {
                     NodeData n=this.graph.getNode(key);
@@ -69,7 +69,7 @@ import java.awt.event.ActionListener;
                     String loc_x=Double.toString(n.getLocation().x());
                     String loc_y=Double.toString(n.getLocation().y());
                     String loc_z=Double.toString(n.getLocation().z());
-                    s = new result_screen(this.graph,"id: "+id+", "+"x: "+loc_x+", "+"y: "+loc_y+" ,"+"z: "+loc_z, 1,"",null);
+                    s = new result_screen(this.graph,"id: "+id+", "+"x: "+loc_x+", "+"y: "+loc_y+" ,\n"+"z: "+loc_z,"",null,Color.blue);
                 }
             }
             if(e.getSource() == backButton) {

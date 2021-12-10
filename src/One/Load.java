@@ -50,7 +50,7 @@ public class Load implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton || Field.getText().isEmpty())
+        if (e.getSource() == loginButton && Field.getText().isEmpty())
         {
             frame.dispose();
             Load n=new Load(this.graph);
@@ -63,9 +63,9 @@ public class Load implements ActionListener {
                 frame.dispose();
                 result_screen s;
                 if (t == true) {
-                    s = new result_screen(algo.getGraph(), "the file was load!", 1, "", null);
+                    s = new result_screen(algo.getGraph(), "the file was load!",  "", null,Color.green);
                 } else {
-                    s = new result_screen(this.graph, "the file was not found!", 0, "", null);
+                    s = new result_screen(this.graph, "the file was not found!",  "", null,Color.red);
                 }
             }
         }

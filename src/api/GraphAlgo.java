@@ -8,7 +8,6 @@ import com.google.gson.*;
 
 public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
     private DWGraph gr;
-    private int biggest;
 
     public GraphAlgo(DirectedWeightedGraph g) {
         this.init(g);
@@ -20,6 +19,9 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
     @Override
     public void init(DirectedWeightedGraph g) {
         this.gr = (DWGraph) g;
+    }
+    private int getBiggest()
+    {
         int max=Integer.MIN_VALUE;
         for(int i: this.gr.getNodes().keySet())
         {
@@ -28,7 +30,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
                 max=this.gr.getNodes().get(i).getKey();
             }
         }
-        this.biggest=max+1;
+        return max+1;
     }
 
     @Override
@@ -47,7 +49,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         if (this.gr.nodeSize() == 0) {
             return true;
         }
-        boolean v[] = new boolean[this.biggest];
+        boolean v[] = new boolean[getBiggest()];
         List<Integer> q = new LinkedList<>();
         q.add(this.gr.getNodes().get(0).getKey());
         while (!q.isEmpty()) {
@@ -163,8 +165,8 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
     }
 
     private double[] path_arr(int src, String key) {
-        double d[]=new double[this.biggest];
-        double f[]= new double[this.biggest];
+        double d[]=new double[getBiggest()];
+        double f[]= new double[getBiggest()];
         Collection<Integer> keys=this.gr.getNodes().keySet();
         for(int i : keys)
         {
@@ -283,7 +285,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         return this.gr.getNodes().get(k);
     }
     private double maxVal(int x,double max) {
-        double d[]=new double[this.biggest];
+        double d[]=new double[getBiggest()];
         Collection<Integer> keys=this.gr.getNodes().keySet();
         for(int i : keys)
         {

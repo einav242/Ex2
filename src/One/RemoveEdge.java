@@ -56,7 +56,7 @@ public class RemoveEdge implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton || src_Field.getText().isEmpty() || dest_Field.getText().isEmpty())
+        if (e.getSource() == loginButton && (src_Field.getText().isEmpty() || dest_Field.getText().isEmpty()))
         {
             frame.dispose();
             RemoveEdge n=new RemoveEdge(this.graph);
@@ -65,20 +65,21 @@ public class RemoveEdge implements ActionListener {
         {
             int src=Integer.parseInt(src_Field.getText());
             int dest=Integer.parseInt(dest_Field.getText());
+            frame.dispose();
             result_screen s;
-            if(this.graph.getEdges().get(src).containsKey(dest))
+            if(this.graph.getEdge(src,dest)!=null)
             {
                 this.graph.removeEdge(src,dest);
-                if(!this.graph.getEdges().get(src).containsKey(dest)) {
-                    s = new result_screen(this.graph, "the edges removed", 1,"",null);
+                if(this.graph.getEdge(src,dest)==null) {
+                    s = new result_screen(this.graph, "the edges removed", "",null,Color.green);
                 }
                 else {
-                    s = new result_screen(this.graph,"try again!", 0,"",null);
+                    s = new result_screen(this.graph,"try again!", "",null,Color.red);
                 }
             }
             else
             {
-                s = new result_screen(this.graph,"try again!", 0,"",null);
+                s = new result_screen(this.graph,"the edge is not in the graph", "",null,Color.red);
             }
         }
 
