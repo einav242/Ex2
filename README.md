@@ -98,7 +98,9 @@ you can edit the Graph:
 <img width="255" alt="Capture111" src="https://user-images.githubusercontent.com/93201414/145687733-304b8448-b02f-46b2-a7a5-1bedb65f95c7.PNG">
 
 
+you can show tour Graph:
 
+<img width="399" alt="Capture3" src="https://user-images.githubusercontent.com/93201414/145687799-0fcac3fa-2ced-4a3c-96fb-391b568f64d5.PNG">
 
 
 
