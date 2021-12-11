@@ -89,10 +89,11 @@ dring implementation of :
 ## :bar_chart: Gui
 ### :pushpin: Implements a graphical interface that includes a menu that allows you to load graphs from files, save them, Edit them and run algorithms on them.
 
-
+Main menu:
 <img width="304" alt="Capture" src="https://user-images.githubusercontent.com/93201414/145433523-704aa77e-c1b3-47d7-90a5-c68e52f96728.PNG">
 
-
+you can edit the Graph
+<img width="255" alt="Capture111" src="https://user-images.githubusercontent.com/93201414/145687733-304b8448-b02f-46b2-a7a5-1bedb65f95c7.PNG">
 
 
 
