@@ -97,7 +97,9 @@ you can edit the Graph:
 
 <img width="255" alt="Capture111" src="https://user-images.githubusercontent.com/93201414/145687733-304b8448-b02f-46b2-a7a5-1bedb65f95c7.PNG">
 
+
 you can run algorithms on your Graph:
+
 <img width="201" alt="Capture32" src="https://user-images.githubusercontent.com/93201414/145689825-a31b7cf8-efbb-45c1-a6c1-53675ec64778.PNG">
 
 
