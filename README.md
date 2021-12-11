@@ -105,7 +105,7 @@ you can run algorithms on your Graph:
 
 you can show your Graph:
 
-<img width="400" alt="Capture" src="https://user-images.githubusercontent.com/93201414/145689963-037ead09-a548-458b-b898-b2053b449c23.PNG">
+<img width="601" alt="Capture" src="https://user-images.githubusercontent.com/93201414/145690027-6d35de43-e18b-4513-8123-7e4fcf9f75c1.PNG">
 
 
 ## Analysis of the performance of our algorithm On graphs size 1000, 10000, 1000000, 1000000 : 
