@@ -11,7 +11,7 @@ public class CreateGraph {
         this.E_num = E_num;
     }
 
-    public DirectedWeightedGraphAlgorithms rand(){
+    public void rand(String file){
        GraphAlgo algo = new GraphAlgo();
         Random random = new Random();
         for (int i = 0; i < this.N_num; i++) {
@@ -28,7 +28,8 @@ public class CreateGraph {
                 algo.getGraph().connect(i, Dest, Weight);
             }
         }
-        return algo;
+        algo.save(file);
     }
 
 }
+
