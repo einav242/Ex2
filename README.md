@@ -105,7 +105,10 @@ you can run algorithms on your Graph:
 
 you can show your Graph:
 
-<img width="601" alt="Capture" src="https://user-images.githubusercontent.com/93201414/145690027-6d35de43-e18b-4513-8123-7e4fcf9f75c1.PNG">
+G1.json Graph
+
+![WhatsApp Image 2021-12-11 at 22 05 14](https://user-images.githubusercontent.com/93201414/145690115-cec88157-15f3-4f1c-a292-70865d353edb.jpeg)
+
 
 
 ## Analysis of the performance of our algorithm On graphs size 1000, 10000, 1000000, 1000000 : 
