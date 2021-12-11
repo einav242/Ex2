@@ -1,11 +1,11 @@
-package One;
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import api.*;
-public class Save implements ActionListener {
+public class Load implements ActionListener {
     DWGraph graph;
     JFrame frame = new JFrame();
     JButton loginButton = new JButton("enter");
@@ -18,10 +18,8 @@ public class Save implements ActionListener {
     JLabel messageLabel = new JLabel();
 
 
-    Save(DirectedWeightedGraph graph)
+    Load(DirectedWeightedGraph graph)
     {
-
-        //  loginInfo = loginInfoOriginal;
         this.graph=new DWGraph(graph);
         userIDLabel.setBounds(50,100,75,25);
 
@@ -55,27 +53,41 @@ public class Save implements ActionListener {
         if (e.getSource() == loginButton && Field.getText().isEmpty())
         {
             frame.dispose();
-            Save n=new Save(this.graph);
+            Load n=new Load(this.graph);
         }
-       else if(e.getSource() == loginButton)
-        {
-            GraphAlgo algo=new GraphAlgo(this.graph);
-            String file=Field.getText();
-           boolean t= algo.save(file);
-            frame.dispose();
-            result_screen s;
-            if(t == true) {
-                s = new result_screen(this.graph,"the file was save!", "",null,Color.green);
-            }
-            else
-            {
-                s = new result_screen(this.graph,"the file was not save!", "",null,Color.red);
+         else if(e.getSource() == loginButton) {
+            GraphAlgo algo = new GraphAlgo(this.graph);
+            String file = Field.getText();
+            if (file != "") {
+                boolean t = algo.load(file);
+                frame.dispose();
+                result_screen s;
+                if (t == true) {
+                    s = new result_screen(algo.getGraph(), "the file was load!",  "", null,Color.green);
+                } else {
+                    s = new result_screen(this.graph, "the file was not found!",  "", null,Color.red);
+                }
             }
         }
-        if(e.getSource() == backButton)
-        {
+        if(e.getSource() == backButton) {
             frame.dispose();
-            LoginPage l=new LoginPage(graph);
+            LoginPage l;
+            GraphAlgo algo = new GraphAlgo(this.graph);
+            if (Field.getText().isEmpty()) {
+                l = new LoginPage(algo.getGraph());
+            }
+            else {
+                String file = Field.getText();
+               boolean t = algo.load(file);
+                if (t == true) {
+                    l = new LoginPage(algo.getGraph());
+                    }
+                else {
+                    l = new LoginPage(this.graph);
+                    }
+                }
+            }
         }
     }
-}
+
+

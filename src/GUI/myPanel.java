@@ -1,12 +1,13 @@
-package One;
+package GUI;
 
 import api.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.DecimalFormat;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class myPanel extends JPanel{
@@ -18,7 +19,7 @@ public class myPanel extends JPanel{
 
     myPanel(DirectedWeightedGraph graph, LinkedList l) {
         this.df2 = new DecimalFormat("#.##");
-        this.setPreferredSize(new Dimension(600, 600));
+        this.setPreferredSize(new Dimension(800, 800));
         this.graph = new DWGraph(graph);
         double min_x = min_x();
         double min_y = min_y();
@@ -26,8 +27,8 @@ public class myPanel extends JPanel{
         double max_y = max_y();
         double abs_x = Math.abs(max_x - min_x);
         double abs_y = Math.abs(max_y - min_y);
-        this.s_x = (500 / abs_x);
-        this.s_y = (500 / abs_y);
+        this.s_x = (800 / abs_x);
+        this.s_y = (800 / abs_y);
         this.l = l;
     }
 
@@ -78,7 +79,13 @@ public class myPanel extends JPanel{
                 graphics2D.setPaint(Color.BLUE);
                 graphics2D.setStroke(new BasicStroke(3));
                 graphics2D.drawOval(x-3 , y-3 , 10, 10);
-                graphics2D.drawString("" + i, x - 2+10, y + 5+10);
+                graphics2D.setStroke(new BasicStroke(3));
+                graphics2D.drawString("" + i, x - 8, y + 15);
+                String x_loc=Double.toString(n.getLocation().x());
+                String y_loc=Double.toString(n.getLocation().y());
+                String z_loc=Double.toString(n.getLocation().z());
+                graphics2D.setPaint(Color.green);
+                graphics2D.drawString("("+x_loc + ","+y_loc+","+z_loc+")", x+3, y+15 );
             }
     }
         private double min_x()

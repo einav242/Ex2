@@ -1,4 +1,4 @@
-package One;
+package GUI;
 
 import api.DWGraph;
 import api.DirectedWeightedGraph;
@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 
 public class Remove_Node implements ActionListener {
     DWGraph graph;

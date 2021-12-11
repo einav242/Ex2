@@ -1,28 +1,29 @@
-package One;
+package GUI;
+
+import api.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import api.*;
-public class Short_PathDist implements ActionListener {
-    GraphAlgo algo;
+
+public class getEdge implements ActionListener {
+    DWGraph graph;
     JFrame frame = new JFrame();
     JButton loginButton = new JButton("enter");
-    JButton backButton = new JButton("back");
+    JButton backButton = new JButton("Back");
+
     JTextField Field1 = new JTextField();
     JTextField Field2 = new JTextField();
 
-    JLabel srcLabel = new JLabel("Src: ");
-    JLabel destLabel = new JLabel("Dest: ");
+    JLabel srcLabel = new JLabel("src: ");
+    JLabel destLabel = new JLabel("dest: ");
     JLabel messageLabel = new JLabel();
 
-    HashMap<Integer,Integer> loginInfo = new HashMap<Integer,Integer>();
 
-    Short_PathDist(GraphAlgo algo) {
-
-        this.algo=algo;
+    getEdge(DirectedWeightedGraph graph)
+    {
+        this.graph=new DWGraph(graph);
         srcLabel.setBounds(50,100,75,25);
         destLabel.setBounds(50,150,75,25);
 
@@ -32,13 +33,13 @@ public class Short_PathDist implements ActionListener {
         Field1.setBounds(125,100,200,25);
         Field2.setBounds(125,150,200,25);
 
-        loginButton.setBounds(225,200,100,25);
-        loginButton.setFocusable(false);
-        loginButton.addActionListener(this);
-
         backButton.setBounds(300,50,100,25);
         backButton.setFocusable(false);
         backButton.addActionListener(this);
+
+        loginButton.setBounds(225,200,100,25);
+        loginButton.setFocusable(false);
+        loginButton.addActionListener(this);
 
         frame.add(srcLabel);
         frame.add(destLabel);
@@ -58,31 +59,39 @@ public class Short_PathDist implements ActionListener {
         if (e.getSource() == loginButton && (Field1.getText().isEmpty() || Field2.getText().isEmpty()))
         {
             frame.dispose();
-            Short_PathDist n=new Short_PathDist(this.algo);
+            getEdge n=new getEdge(this.graph);
         }
         else if(e.getSource() == loginButton) {
-            int src = Integer.parseInt(Field1.getText());
-            int dest = Integer.parseInt(Field2.getText());
+            int src=Integer.parseInt(Field1.getText());
+            int dest=Integer.parseInt(Field2.getText());
             frame.dispose();
             result_screen s;
-            if (this.algo.getGraph().getNode(src) == null || this.algo.getGraph().getNode(dest) == null) {
-                s = new result_screen(this.algo.getGraph(), "try again", "",null,Color.red);
+            if(this.graph.getNode(src)==null && this.graph.getNode(dest)==null)
+            {
+                s = new result_screen(this.graph,"the node is not in the graph","",null,Color.red);
+            }
+            else if(!this.graph.getEdges().get(src).containsKey(dest))
+            {
+                s = new result_screen(this.graph,"the edge is not in the graph", "",null,Color.red);
             }
             else {
-                double dist = this.algo.shortestPathDist(src, dest);
-                String d = Double.toString(dist);
-                if (dist != -1) {
-                    s = new result_screen(this.algo.getGraph(), "the distance is " + d, "",null,Color.MAGENTA);
-                } else {
-                    s = new result_screen(this.algo.getGraph(), "there is no path", "",null,Color.red);
-                }
+                EdgeData ed=this.graph.getEdge(src,dest);
+                String src1=Integer.toString(ed.getSrc());
+                String dest1=Double.toString(ed.getDest());
+                String w=Double.toString(ed.getWeight());
+                s = new result_screen(this.graph,"src: "+src1+", "+"dest: "+dest1+", "+"weigh: "+w, "",null,Color.blue);
             }
         }
-        if(e.getSource() == backButton)
-        {
+        if(e.getSource() == backButton) {
             frame.dispose();
-            Use_Algo_LoginPage u=new Use_Algo_LoginPage(this.algo.getGraph());
+            LoginPage l;
+            l = new LoginPage(this.graph);
         }
-
     }
 }
+
+
+
+
+
+
