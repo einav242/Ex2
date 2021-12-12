@@ -141,6 +141,10 @@ G1.json Graph
 ### center:
 1000:11sec 2ms
 
+### tsp:
+1000:943ms
+10000:20sec 357ms
+
 ### save:
 1000:348 ms
 10000:1sec 84ms
