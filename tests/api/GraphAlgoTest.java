@@ -279,6 +279,7 @@ class GraphAlgoTest {
         l3.add(g03.getNodes().get(2));
         l3.add(g03.getNodes().get(3));
         List<NodeData> l03 = new LinkedList<>();
+        l03.add(g03.getNodes().get(0));
         l03.add(g03.getNodes().get(1));
         l03.add(g03.getNodes().get(4));
         l03.add(g03.getNodes().get(6));

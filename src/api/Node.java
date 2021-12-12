@@ -17,6 +17,15 @@ public class Node implements NodeData{
     this.info = "white";
     this.tag =  0;
     }
+    public Node()
+    {
+        this.key = -1;
+        Location location=new Location(-1,-1,-1);
+        this.location = location;
+        this.weight = 0;
+        this.info = "white";
+        this.tag =  0;
+    }
 
     @Override
     public int getKey() {

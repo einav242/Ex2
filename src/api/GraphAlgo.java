@@ -1,6 +1,7 @@
 package api;
 
 import java.io.*;
+import java.net.http.HttpHeaders;
 import java.util.*;
 
 import com.google.gson.*;
@@ -115,7 +116,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
     @Override
     public double shortestPathDist(int src, int dest) {
         path_arr(src);
-        if(this.gr.getNode(dest).getWeight() == Integer.MAX_VALUE || this.gr.getNode(dest).getWeight()==0)
+        if(this.gr.getNode(dest)==null|| this.gr.getNode(dest).getWeight() == Integer.MAX_VALUE || this.gr.getNode(dest).getWeight()==0)
         {
             return  -1;
         }
@@ -124,11 +125,11 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
     @Override
     public List<NodeData> shortestPath(int src, int dest) {
         List<NodeData>l=new LinkedList<>();
-        if(this.shortestPathDist(src,dest) ==-1)
-        {
-            return l;
-        }
         path_arr(src);
+        if(this.gr.getNode(dest)==null|| this.gr.getNode(dest).getWeight() == Integer.MAX_VALUE || this.gr.getNode(dest).getWeight()==0)
+        {
+            return  l;
+        }
         int j=this.gr.getNode(dest).getTag();
         l.add(0,this.gr.getNode(dest));
         while (j!=src)
@@ -245,6 +246,19 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         return this.gr.getNode(k);
     }
 
+
+    private List<NodeData>help_tsp(int src,int dest)
+    {
+        List<NodeData>l=this.shortestPath(src,dest);
+        if(l==null)
+        {
+            return null;
+        }
+        NodeData t=new Node();
+        t.setWeight(this.gr.getNode(dest).getWeight());
+        l.add(0,t);
+        return l;
+    }
     @Override
     public List<NodeData> tsp(List<NodeData> cities) {
         if (cities.size() == 0){
@@ -254,49 +268,47 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
             return cities;
         }
         List<NodeData> ans = new ArrayList<>();
-        List<NodeData> temp = new ArrayList<>();
-        if(!isConnected()) {
-            for (int i = 0; i < cities.size(); i++) {
-                for (int j = 0; j < cities.size(); j++) {
-                    if (shortestPathDist(cities.get(i).getKey(), cities.get(j).getKey()) == -1 && i != j) {
-                        return null;
-                    }
-                }
-            }
-        }
-        int  i = 0 , d = 0;
-        double temp_Dist;
-        int start = minStart(cities);
-        while (cities.size() != 0) {
-            double min = Double.MAX_VALUE;
-            for (NodeData j :cities) {
-                if (ans.size() != 0) {
-                    start = ans.get(ans.size() - 1).getKey();
-                }
-                else {
-                    if (0  <  i ) {
-                        start = j.getKey();
-                    }
-                }
-                temp_Dist = shortestPathDist(start, j.getKey());
-                if (temp_Dist < min && start != j.getKey()) {
-                    min = temp_Dist;
-                    temp = shortestPath(start, j.getKey());
-                    d = j.getKey();
-                }
-            }
-            i++;
-            for (int j = 0; j < temp.size(); j++) {
-                if (ans.size() != 0 && ans.get(ans.size() - 1).getKey() == temp.get(j).getKey()) {
+        NodeData n1= cities.get(0);
+        int k;
+        while (cities.size()!=0)
+        {
+            double min=Double.MAX_VALUE;
+             k=-1;
+            List<NodeData>list_temp;
+            for(NodeData n2 : cities)
+            {
+                if(n1 == n2)
+                {
                     continue;
                 }
-                ans.add(temp.get(j));
+                list_temp=help_tsp(n1.getKey(),n2.getKey());
+                double temp=list_temp.get(0).getWeight();
+                list_temp.remove(0);
+                if(temp<min && temp!=-1)
+                {
+                    min=temp;
+                    k= n2.getKey();
+                }
             }
-            cities.remove(this.gr.getNode(d));
-        }
-        if (next(ans) == true) {
-            NodeData n = ans.get(0);
-            ans.remove(n);
+            if(min== Integer.MAX_VALUE)
+            {
+                return null;
+            }
+            list_temp=this.shortestPath(n1.getKey(),k);
+            for(NodeData n_temp: list_temp)
+            {
+                if(n_temp==this.gr.getNode(k))
+                {
+                    continue;
+                }
+                ans.add(n_temp);
+            }
+            if(cities.size()==1)
+            {
+                ans.add(n1);
+            }
+            cities.remove(n1);
+            n1=this.gr.getNode(k);
         }
         return ans;
     }
