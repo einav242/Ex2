@@ -56,7 +56,6 @@ public class myPanel extends JPanel{
                 if (n_src.getTag() == 0 && n_dest.getTag() == 0) {
                     graphics2D.setPaint(Color.red);
                     graphics2D.setStroke(new BasicStroke(3));
-                    graphics2D.drawString(df2.format(e.getWeight()), (x1 + x2) / 2, (y1 + y2) / 2);
                     graphics2D.setStroke(new BasicStroke(0));
                     n_src.setTag(n_src.getTag() + 1);
                     n_dest.setTag(n_dest.getTag() + 1);
@@ -64,8 +63,6 @@ public class myPanel extends JPanel{
                 else {
                     graphics2D.setPaint(Color.red);
                     graphics2D.setStroke(new BasicStroke(3));
-                    int sum = 10*(n_src.getTag() + n_dest.getTag());
-                    graphics2D.drawString(df2.format(e.getWeight()), (x1 + x2 - sum) / 2, (y1 + y2-sum) / 2);
                     graphics2D.setStroke(new BasicStroke(0));
                     n_src.setTag(n_src.getTag() + 1);
                     n_dest.setTag(n_dest.getTag() + 1);
