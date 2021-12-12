@@ -162,6 +162,8 @@ class DWGraphTest {
         {
             assertEquals(iter3.next(),g3.getNodes().get(i));
         }
+        assertEquals(null,g3.getNodes().get(10));
+
     }
 
     @Test
@@ -193,6 +195,7 @@ class DWGraphTest {
                 assertEquals(iter3.next(),g3.getEdges().get(i).get(j));
             }
         }
+        assertEquals(null,g3.getEdges().get(8).get(2));
     }
 
     @Test
@@ -361,7 +364,6 @@ class DWGraphTest {
             assertEquals(g3.getEdges().get(0).get(i),iter3.next());
         }
     }
-
 
     @Test
     void removeNode() {

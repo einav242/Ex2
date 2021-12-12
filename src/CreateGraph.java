@@ -15,8 +15,8 @@ public class CreateGraph {
        GraphAlgo algo = new GraphAlgo();
         Random random = new Random();
         for (int i = 0; i < this.N_num; i++) {
-            double x = 35 + random.nextDouble();
-            double y = 32 + random.nextDouble();
+            double x = 30 + random.nextDouble();
+            double y = 29 + random.nextDouble();
             GeoLocation location = new Location(x, y, 0.0);
             NodeData node = new Node(i, location);
             algo.getGraph().addNode(node);

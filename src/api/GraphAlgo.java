@@ -16,13 +16,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
     public GraphAlgo() {
         this.gr=new DWGraph();
     }
-
-    @Override
-    public void init(DirectedWeightedGraph g) {
-        this.gr = (DWGraph) g;
-    }
-    private int getBiggest()
-    {
+    private int getBiggest() {
         int max=Integer.MIN_VALUE;
         for(int i: this.gr.getNodes().keySet())
         {
@@ -32,6 +26,11 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
             }
         }
         return max+1;
+    }
+
+    @Override
+    public void init(DirectedWeightedGraph g) {
+        this.gr = (DWGraph) g;
     }
 
     @Override
@@ -122,6 +121,7 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         }
         return this.gr.getNode(dest).getWeight();
     }
+
     @Override
     public List<NodeData> shortestPath(int src, int dest) {
         List<NodeData>l=new LinkedList<>();
@@ -246,19 +246,6 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         return this.gr.getNode(k);
     }
 
-
-    private List<NodeData>help_tsp(int src,int dest)
-    {
-        List<NodeData>l=this.shortestPath(src,dest);
-        if(l==null)
-        {
-            return null;
-        }
-        NodeData t=new Node();
-        t.setWeight(this.gr.getNode(dest).getWeight());
-        l.add(0,t);
-        return l;
-    }
     @Override
     public List<NodeData> tsp(List<NodeData> cities) {
         if (cities.size() == 0){
@@ -312,43 +299,17 @@ public class GraphAlgo implements DirectedWeightedGraphAlgorithms {
         }
         return ans;
     }
-
-    private boolean next(List<NodeData> cities) {
-        NodeData node=cities.get(0);
-        cities.remove(node);
-        for(NodeData n: cities)
+    private List<NodeData>help_tsp(int src,int dest) {
+        List<NodeData>l=this.shortestPath(src,dest);
+        if(l==null)
         {
-            if(n.getKey() == node.getKey())
-            {
-                cities.add(0,node);
-                return true;
-            }
+            return null;
         }
-        cities.add(0,node);
-        return false;
+        NodeData t=new Node();
+        t.setWeight(this.gr.getNode(dest).getWeight());
+        l.add(0,t);
+        return l;
     }
-    private int minStart(List<NodeData> cities) {
-        int temp=-1;
-        double w;
-        double min=Double.MAX_VALUE;
-        for(NodeData i : cities)
-        {
-            double sum=0;
-            for(NodeData j: cities)
-            {
-                w=this.shortestPathDist(i.getKey(),j.getKey());
-                sum+=w;
-            }
-            if(sum<min)
-            {
-                min=sum;
-                temp=i.getKey();
-            }
-        }
-        return temp;
-
-    }
-
 
     @Override
     public boolean save(String file) {

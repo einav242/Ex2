@@ -62,7 +62,10 @@ public class DWGraph implements DirectedWeightedGraph{
 
     @Override
     public EdgeData getEdge(int src, int dest) {
-        return edges.get(src).get(dest);
+        if(edges.containsKey(src) && edges.get(src).containsKey(dest)) {
+            return edges.get(src).get(dest);
+        }
+        return null;
     }
 
     @Override
@@ -108,7 +111,6 @@ public class DWGraph implements DirectedWeightedGraph{
         }
         return iterator;
     }
-
 
     @Override
     public Iterator<EdgeData> edgeIter(int node_id) {

@@ -10,9 +10,17 @@ public class Ex2 {
 
 
     public static void main(String[] args) {
-        DirectedWeightedGraph g=getGrapg(args[0]);
-        DirectedWeightedGraphAlgorithms algo=getGrapgAlgo(args[0]);
-        Ex2.runGUI(args[0]);
+        if(args.length==0)
+        {
+            DirectedWeightedGraph g=getGrapg("G1.json");
+            DirectedWeightedGraphAlgorithms algo=getGrapgAlgo("G1.json");
+            Ex2.runGUI("G1.json");
+        }
+        else {
+            DirectedWeightedGraph g = getGrapg(args[0]);
+            DirectedWeightedGraphAlgorithms algo = getGrapgAlgo(args[0]);
+            Ex2.runGUI(args[0]);
+        }
     }
     /**
      * This static function will be used to test your implementation
