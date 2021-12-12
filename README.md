@@ -115,12 +115,16 @@ G1.json Graph
 
 ### copy:
 1000:247ms
+
 10000:623ms
+
 100000:5sec 853ms
 
 ### init:
 1000:185ms
+
 10000:549ms
+
 100000:5sec 137ms
 
 ### isConnected():
