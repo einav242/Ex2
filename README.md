@@ -117,32 +117,37 @@ copy:
 1000:247ms
 10000:623ms
 100000:5sec 853ms
-init:
+
+### init:
 1000:185ms
 10000:549ms
 100000:5sec 137ms
-isConnected():
+
+### isConnected():
 1000:248ms
 10000:733ms
-100000:6 sec 494ms.
-shortestPath:
+100000:6 sec 494ms
+
+### shortestPath:
 1000:300ms
 10000:2 sec 642ms
 100000:timeout
-shortestPathDist:
+
+### shortestPathDist:
 1000:269ms
 10000:1sec 639ms
 100000:timeout
-center:
+
+### center:
 1000:11sec 2ms
-save:
+
+### save:
 1000:348 ms
 10000:1sec 84ms
 100000:11 sec 985ms
-load:
+
+### load:
 1000:218ms
 10000:548ms
 100000:4sec 952ms
-
-
 
