@@ -129,17 +129,23 @@ G1.json Graph
 
 ### isConnected():
 1000:248ms
+
 10000:733ms
+
 100000:6 sec 494ms
 
 ### shortestPath:
 1000:300ms
+
 10000:2 sec 642ms
+
 100000:timeout
 
 ### shortestPathDist:
 1000:269ms
+
 10000:1sec 639ms
+
 100000:timeout
 
 ### center:
@@ -147,15 +153,20 @@ G1.json Graph
 
 ### tsp:
 1000:943ms
+
 10000:20sec 357ms
 
 ### save:
 1000:348 ms
+
 10000:1sec 84ms
+
 100000:11 sec 985ms
 
 ### load:
 1000:218ms
+
 10000:548ms
+
 100000:4sec 952ms
 
