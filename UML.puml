@@ -1,0 +1,245 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class DWGraphTest
+class GraphAlgoTest
+class LocationTest
+class NodeTest
+class EdgeTest
+interface DirectedWeightedGraph
+interface DirectedWeightedGraphAlgorithms
+interface EdgeData
+interface GeoLocation
+interface NodeData
+class DWG_deserializer
+class DWGraph
+class Edge
+class GraphAlgo
+class Location
+class Node
+
+GeoLocation <|-- LocationTest
+EdgeData <|-- EdgeTest
+NodeData <|-- NodeTest
+DirectedWeightedGraph <|-- DWGraphTest
+DirectedWeightedGraphAlgorithms <|-- GraphAlgoTest
+
+Location <|-- GeoLocation
+NodeData <|-- GeoLocation
+Node <|-- GeoLocation
+
+NodeData <|-- EdgeData
+DirectedWeightedGraph <|-- EdgeData
+Edge <|-- EdgeData
+
+DirectedWeightedGraph <|-- NodeData
+Node <|-- NodeData
+
+DWGraph <|-- DirectedWeightedGraph
+DirectedWeightedGraphAlgorithms <|-- DirectedWeightedGraph
+
+DWG_deserializer <|-- GraphAlgo
+
+GraphAlgo <|-- DirectedWeightedGraphAlgorithms
+
+interface DirectedWeightedGraph{
+getNode(int key)
+getEdge(int src, int dest)
+addNode(NodeData n)
+connect(int src, int dest, double w)
+nodeIter()
+edgeIter()
+edgeIter(int node_id)
+removeNode(int key)
+removeEdge(int src, int dest)
+nodeSize()
+edgeSize()
+getMC()
+}
+
+interface DirectedWeightedGraphAlgorithms{
+init(DirectedWeightedGraph g)
+getGraph()
+copy()
+isConnected()
+shortestPathDist(int src, int dest)
+shortestPath(int src, int dest)
+center()
+tsp(List<NodeData> cities)
+save(String file)
+load(String file)
+}
+
+interface EdgeData{
+getSrc()
+getDest()
+getWeight()
+getInfo()
+setInfo(String s)
+getTag()
+setTag(int t)
+}
+
+interface GeoLocation{
+x()
+y()
+z()
+distance(GeoLocation g);
+}
+
+interface NodeData{
+getKey()
+getLocation()
+setLocation(GeoLocation p)
+getWeight()
+setWeight(double w)
+getInfo()
+setInfo(String s)
+getTag()
+setTag(int t)
+}
+
+class DWG_deserializer{
+deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext)
+}
+
+class DWGraph{
+DWGraph()
+DWGraph(DirectedWeightedGraph other)
+getNodes()
+getEdges()
+getNode(int key)
+getEdge(int src, int dest)
+addNode(NodeData n)
+connect(int src, int dest, double w)
+nodeIter()
+edgeIter()
+edgeIter(int node_id)
+removeNode(int key)
+removeEdge(int src, int dest)
+nodeSize()
+edgeSize()
+getMC()
+}
+class Edge{
+Edge(int s, int d, double w)
+getSrc()
+getDest()
+getWeight()
+getInfo()
+setInfo(String s)
+getTag()
+setTag(int t)
+}
+
+class GraphAlgo{
+GraphAlgo(DirectedWeightedGraph g)
+GraphAlgo()
+init(DirectedWeightedGraph g)
+getGraph()
+copy()
+isConnected()
+revers()
+shortestPathDist(int src, int dest)
+shortestPath(int src, int dest)
+path_arr(int src, String key)
+white()
+minVal(double d[])
+min(double x,double y)
+center()
+maxVal(int x,double max)
+tsp(List<NodeData> cities)
+next(List<NodeData> cities)
+minStart(List<NodeData> cities)
+save(String file)
+save_edge()
+save_node()
+load(String file)
+}
+
+class Location{
+Location(double x, double y, double z)
+Location(GeoLocation other)
+x()
+y()
+z()
+distance(GeoLocation g)
+toString()
+}
+
+class Node{
+Node(int id, GeoLocation loc)
+getKey()
+getLocation()
+setLocation(GeoLocation p)
+getWeight()
+setWeight(double w)
+getInfo()
+setInfo(String s
+getTag()
+setTag(int t)
+toString()
+}
+
+class DWGraphTest{
+getNodes()
+getEdges()
+getNode()
+getEdge()
+addNode()
+connect()
+nodeIter()
+edgeIter()
+testEdgeIter()
+removeNode()
+removeEdge()
+nodeSize()
+edgeSize()
+getMC()
+}
+class GraphAlgoTest{
+init()
+getGraph()
+copy()
+isConnected()
+shortestPathDist()
+shortestPath()
+center()
+tsp()
+save()
+load()
+}
+
+
+class LocationTest{
+x()
+y()
+z()
+distance()
+testToString()
+}
+
+class NodeTest{
+getKey()
+getLocation()
+setLocation()
+getWeight()
+setWeight()
+getInfo()
+setInfo()
+getTag()
+setTag()
+testToString()
+}
+
+
+class EdgeTest{
+getSrc()
+getDest()
+getWeight()
+getInfo()
+setInfo()
+getTag()
+setTag()
+}
+@enduml
