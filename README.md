@@ -107,7 +107,8 @@ you can show your Graph:
 
 G1.json Graph
 
-![WhatsApp Image 2021-12-11 at 22 05 14](https://user-images.githubusercontent.com/93201414/145690115-cec88157-15f3-4f1c-a292-70865d353edb.jpeg)
+![WhatsApp Image 2021-12-13 at 12 22 49](https://user-images.githubusercontent.com/93201414/145796734-b9116494-fdce-42f5-bceb-515cd7c385db.jpeg)
+
 
 
 
@@ -120,12 +121,16 @@ G1.json Graph
 
 100000:5sec 853ms
 
+1000000000:time out
+
 ### init:
 1000:185ms
 
 10000:549ms
 
 100000:5sec 137ms
+
+1000000000:time out
 
 ### isConnected():
 1000:248ms
@@ -134,12 +139,16 @@ G1.json Graph
 
 100000:6 sec 494ms
 
+1000000000:time out
+
 ### shortestPath:
 1000:300ms
 
 10000:2 sec 642ms
 
 100000:timeout
+
+1000000000:time out
 
 ### shortestPathDist:
 1000:269ms
@@ -148,13 +157,25 @@ G1.json Graph
 
 100000:timeout
 
+1000000000:time out
+
 ### center:
 1000:11sec 2ms
+
+10000:time out
+
+100000:time out
+
+1000000000:time out
 
 ### tsp:
 1000:943ms
 
 10000:20sec 357ms
+
+100000:time out
+
+1000000000:time out
 
 ### save:
 1000:348 ms
@@ -163,10 +184,18 @@ G1.json Graph
 
 100000:11 sec 985ms
 
+1000000000:time out
+
 ### load:
 1000:218ms
 
 10000:548ms
 
 100000:4sec 952ms
+
+1000000000:time out
+
+## UML
+
+![diagram-10609367768205094712](https://user-images.githubusercontent.com/93201414/145797297-fe072322-c96c-4a3b-b8d1-cb4f56a1b670.png)
 
