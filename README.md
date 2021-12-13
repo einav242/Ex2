@@ -171,3 +171,7 @@ G1.json Graph
 
 100000:4sec 952ms
 
+## UML
+
+![diagram-10609367768205094712](https://user-images.githubusercontent.com/93201414/145797297-fe072322-c96c-4a3b-b8d1-cb4f56a1b670.png)
+
