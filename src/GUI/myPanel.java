@@ -19,7 +19,7 @@ public class myPanel extends JPanel{
 
     myPanel(DirectedWeightedGraph graph, LinkedList l) {
         this.df2 = new DecimalFormat("#.##");
-        this.setPreferredSize(new Dimension(800, 800));
+        this.setPreferredSize(new Dimension(1000, 1000));
         this.graph = new DWGraph(graph);
         double min_x = min_x();
         double min_y = min_y();
@@ -27,8 +27,8 @@ public class myPanel extends JPanel{
         double max_y = max_y();
         double abs_x = Math.abs(max_x - min_x);
         double abs_y = Math.abs(max_y - min_y);
-        this.s_x = (800 / abs_x);
-        this.s_y = (800 / abs_y);
+        this.s_x = (750 / abs_x);
+        this.s_y = (750 / abs_y);
         this.l = l;
     }
 
@@ -75,14 +75,14 @@ public class myPanel extends JPanel{
                 int y = (int) ((n.getLocation().y() - min_y()) * this.s_y);
                 graphics2D.setPaint(Color.BLUE);
                 graphics2D.setStroke(new BasicStroke(3));
-                graphics2D.drawOval(x-3 , y-3 , 10, 10);
+                graphics2D.fillOval(x-3 , y-3 , 10, 10);
                 graphics2D.setStroke(new BasicStroke(3));
                 graphics2D.drawString("" + i, x - 8, y + 15);
                 String x_loc=Double.toString(n.getLocation().x());
                 String y_loc=Double.toString(n.getLocation().y());
                 String z_loc=Double.toString(n.getLocation().z());
                 graphics2D.setPaint(Color.green);
-                graphics2D.drawString("("+x_loc + ","+y_loc+","+z_loc+")", x+3, y+15 );
+                graphics2D.drawString("("+x_loc + ","+y_loc+","+z_loc+")", x+3, y+15);
             }
     }
         private double min_x()

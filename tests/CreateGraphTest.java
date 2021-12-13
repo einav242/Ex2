@@ -12,7 +12,9 @@ class CreateGraphTest {
     void rand() {
 
 //        //algo.isConnected();
-//       // algo.center();
+        GraphAlgo algo=new GraphAlgo();
+        algo.load("10000Nodes.json");
+        algo.center();
 //        Iterator<NodeData>iter=algo.getGraph().nodeIter();
 //        int i= (int) (Math.random()*algo.getGraph().nodeSize());
 //        int j=0;
