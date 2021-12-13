@@ -89,7 +89,7 @@ public class LoginPage implements ActionListener {
         {
             frame.dispose();
             LinkedList<NodeData>l=new LinkedList<>();
-            Show s=new Show(this.graph,l);
+            Show s=new Show(this.graph,l,-1);
         }
         else{
             messageLabel.setForeground(Color.red);

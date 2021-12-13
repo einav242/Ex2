@@ -100,7 +100,8 @@ public class Use_Algo_LoginPage implements ActionListener {
             result_screen s;
             if(this.graph.center()!=null) {
                 String str=Integer.toString(this.graph.center().getKey());
-                s = new result_screen(this.graph.getGraph(),"the center is "+str, "",null,Color.blue);
+                frame.dispose();
+                Show sh=new Show(this.graph.getGraph(),null,this.graph.center().getKey());
             }
             else if(this.graph.getGraph().nodeSize()==0)
             {

@@ -14,11 +14,11 @@ public class Show  extends JFrame implements ActionListener{
     myPanel panel;
     JButton backButton = new JButton("Back");
 
-    public Show(DirectedWeightedGraph g ,LinkedList l)
+    public Show(DirectedWeightedGraph g ,LinkedList l,int key)
     {
         this.graph=new DWGraph(g);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.panel=new myPanel(graph,l);
+        this.panel=new myPanel(graph,l,key);
         backButton.setBounds(500,30,65,25);
         backButton.setFocusable(false);
         backButton.addActionListener(this);

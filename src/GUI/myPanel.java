@@ -13,11 +13,12 @@ import java.util.LinkedList;
 public class myPanel extends JPanel{
     DWGraph graph;
     LinkedList l;
+    int key;
     double s_x;
     double s_y;
     DecimalFormat df2;
 
-    myPanel(DirectedWeightedGraph graph, LinkedList l) {
+    myPanel(DirectedWeightedGraph graph, LinkedList l,int key) {
         this.df2 = new DecimalFormat("#.##");
         this.setPreferredSize(new Dimension(1000, 1000));
         this.graph = new DWGraph(graph);
@@ -30,6 +31,7 @@ public class myPanel extends JPanel{
         this.s_x = (750 / abs_x);
         this.s_y = (750 / abs_y);
         this.l = l;
+        this.key=key;
     }
 
     public void paint(Graphics g) {
@@ -73,16 +75,31 @@ public class myPanel extends JPanel{
                 NodeData n = this.graph.getNode(i);
                 int x = (int) ((n.getLocation().x() - min_x()) * this.s_x);
                 int y = (int) ((n.getLocation().y() - min_y()) * this.s_y);
-                graphics2D.setPaint(Color.BLUE);
-                graphics2D.setStroke(new BasicStroke(3));
-                graphics2D.fillOval(x-3 , y-3 , 10, 10);
-                graphics2D.setStroke(new BasicStroke(3));
-                graphics2D.drawString("" + i, x - 8, y + 15);
-                String x_loc=Double.toString(n.getLocation().x());
-                String y_loc=Double.toString(n.getLocation().y());
-                String z_loc=Double.toString(n.getLocation().z());
-                graphics2D.setPaint(Color.green);
-                graphics2D.drawString("("+x_loc + ","+y_loc+","+z_loc+")", x+3, y+15);
+                if(n.getKey()==this.key && !this.graph.getNodes().containsKey(-1))
+                {
+                    graphics2D.setPaint(Color.red);
+                    graphics2D.setStroke(new BasicStroke(3));
+                    graphics2D.fillOval(x-3 , y-3 , 10, 10);
+                    graphics2D.setStroke(new BasicStroke(3));
+                    graphics2D.drawString("" + i, x - 8, y + 15);
+                    String x_loc=Double.toString(n.getLocation().x());
+                    String y_loc=Double.toString(n.getLocation().y());
+                    String z_loc=Double.toString(n.getLocation().z());
+                    graphics2D.setPaint(Color.red);
+                    graphics2D.drawString("("+x_loc + ","+y_loc+","+z_loc+")", x+3, y+15);
+                }
+                else {
+                    graphics2D.setPaint(Color.BLUE);
+                    graphics2D.setStroke(new BasicStroke(3));
+                    graphics2D.fillOval(x - 3, y - 3, 10, 10);
+                    graphics2D.setStroke(new BasicStroke(3));
+                    graphics2D.drawString("" + i, x - 8, y + 15);
+                    String x_loc = Double.toString(n.getLocation().x());
+                    String y_loc = Double.toString(n.getLocation().y());
+                    String z_loc = Double.toString(n.getLocation().z());
+                    graphics2D.setPaint(Color.green);
+                    graphics2D.drawString("(" + x_loc + "," + y_loc + "," + z_loc + ")", x + 3, y + 15);
+                }
             }
     }
         private double min_x()

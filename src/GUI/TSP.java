@@ -103,7 +103,7 @@ public class TSP implements ActionListener {
                 {
                     lk.add(iter.next());
                 }
-                Show show=new Show(this.algo.getGraph(),lk);
+                Show show=new Show(this.algo.getGraph(),lk,-1);
             }
         }
         if(e.getSource() == backButton)
