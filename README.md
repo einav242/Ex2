@@ -107,7 +107,8 @@ you can show your Graph:
 
 G1.json Graph
 
-![WhatsApp Image 2021-12-11 at 22 05 14](https://user-images.githubusercontent.com/93201414/145690115-cec88157-15f3-4f1c-a292-70865d353edb.jpeg)
+![WhatsApp Image 2021-12-13 at 12 22 49](https://user-images.githubusercontent.com/93201414/145796734-b9116494-fdce-42f5-bceb-515cd7c385db.jpeg)
+
 
 
 
